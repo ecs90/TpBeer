@@ -35,7 +35,6 @@ class DAOCerveza extends Singleton implements IDAO
         session_start();
 
         if (isset($_SESSION['CERVEZA'])) {
-            //print_r($_SESSION['CERVEZA']); exit;
             $listaCerveza = $_SESSION['CERVEZA'];
             $i=0;
             for($i=0; $i < count($listaCerveza); $i++){
