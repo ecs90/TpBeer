@@ -9,6 +9,16 @@ abstract class Usuario{
 	protected $usuario;
 	protected $contrasenia;
 
+	public function __construct($nombre, $apellido, $domicilio, $telefono, $email, $usuario, $contrasenia){
+		$this->nombre= $nombre;
+		$this->apellido= $apellido;
+		$this->domicilio= $domicilio;
+		$this->telefono= $telefono;
+		$this->email= $email;
+		$this->usuario= $usuario;
+		$this->contrasenia= $contrasenia;
+	}
+
 	public function setNombre($nombre){
 		$this->nombre= $nombre;
 	}
