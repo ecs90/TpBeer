@@ -8,19 +8,7 @@ class ControlRegistro{
         require_once 'Vistas/Registro.php';
     }
 
-    public function altaRegistro(){
-        $request = new Request();
-        $parametros = $request->getParametros();
-
-
-        $nombre = $parametros['txtNombre'];
-        $apellido = $parametros['txtApellido'];
-        $domicilio = $parametros['txtDomicilio'];
-        $telefono = $parametros['txtTelefono'];
-        $email = $parametros['txtEmail'];
-        $user= $parametros['txtUsuario'];
-        $contra = $parametros['txtPassword'];
-        $contrados= $parametros['txtPasswordConfirm'];
+    public function altaRegistro($nombre, $apellido, $domicilio, $telefono, $email, $user, $contra, $contrados){
 
         if($contra == $contrados){
             $usuario = new Modelos\Cliente();
