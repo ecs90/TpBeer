@@ -1,6 +1,6 @@
 <?php namespace Modelos;
 
-abstract class Usuario{
+class Usuario{
 	protected $nombre;
 	protected $apellido;
 	protected $domicilio;
