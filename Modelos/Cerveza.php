@@ -9,12 +9,12 @@
 		private $stock;
 		private $id;
 
-		public function __construct($nombre="", $descripcion="", $imagen="", $precio="", $stock=""){
+		public function __construct($nombre="", $descripcion="", $precio="", $stock="", $imagen=""){
 			$this->nombre = $nombre;
 			$this->descripcion = $descripcion;
-			$this->imagen = $imagen;
 			$this->precio = $precio;
 			$this->stock = $stock;
+			$this->imagen = $imagen;
 		}
 
 		public function setNombre($nombre){

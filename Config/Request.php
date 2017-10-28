@@ -14,7 +14,7 @@ class Request
 	public function __construct()
 	{
 		// En el archivo htaccess se define una regla de reescritura
-        // para poder tomar la url tanto para todo metodo de petición.
+        // para poder tomar la url para todo metodo de petición.
 		$url = filter_input(INPUT_GET, 'url', FILTER_SANITIZE_URL);		
 
 		// Convierto la url en un array tomando como separador la "/".
@@ -40,6 +40,7 @@ class Request
             $this->metodo = strtolower(array_shift($partes));
         }
 
+        //ESTO LO TENGO QUE CAMBIAR!!!!!!!!!!!!!!!!!!!!!!!
         // Capturo el metodo de petición y lo guardo en una variable
 		if ($this->getMetodoRequest() == 'GET') {   
 			if (!empty($partes)) {

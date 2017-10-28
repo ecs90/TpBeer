@@ -27,6 +27,9 @@ class DAOCerveza extends Singleton implements IDAO
     public function getLista()
     {
         session_start();
+        if (!isset($_SESSION['CERVEZA'])) {
+            echo 'vacio';
+        }
         return $_SESSION['CERVEZA'];
     }
 
@@ -49,23 +52,47 @@ class DAOCerveza extends Singleton implements IDAO
     }
     public function buscar($id){
         session_start();
-
-        if (!isset($_SESSION['CERVEZA'])) {
+        if (isset($_SESSION['CERVEZA'])) {
             $listaCerveza = $_SESSION['CERVEZA'];
             $i=0;
             for($i=0; $i<count($listaCerveza); $i++){
-                if($listaCerveza[$i]->getId() === $id){
-                    $cervezaEncontrada = $listaCerveza[$i]; 
+                if ($listaCerveza[$i]->getId() == $id){
+                    return $listaCerveza[$i]; 
                 }
             }
         }
-        $_SESSION['CERVEZA']= $listaCerveza;
-        return $cervezaEncontrada;
+        return null;
+    }
+
+    public function modificar($id, $parametros)
+    {
+        session_start();
+        if (isset($_SESSION['CERVEZA'])) {
+            $listaCerveza = $_SESSION['CERVEZA'];
+            $i=0;
+            for($i=0; $i<count($listaCerveza); $i++){
+                if ($listaCerveza[$i]->getId() == $id){
+                    $cerveza = $listaCerveza[$i];
+
+                    $cerveza->setNombre($parametros['nombre']);
+                    $cerveza->setDescripcion($parametros['descripcion']);
+                    $cerveza->setPrecio($parametros['precio']);
+                    $cerveza->setStock($parametros['stockLitros']);
+                    
+                    
+
+                    $_SESSION['CERVEZA'][$i] = $cerveza;
+                    
+                    return true;
+                }
+            }
+        }
+        return false;
     }
     
 
     /////////////HACER!!!!!!!!!!!!!!!!!!////////////////////////////////////////
-    /*public function modificar($cerveza, ){
+    /*public function modificar(){
         session_start();
 
         if (!isset($_SESSION['CERVEZA'])) {
@@ -79,6 +106,6 @@ class DAOCerveza extends Singleton implements IDAO
         }
         $_SESSION['CERVEZA'][] = $listaCerveza;
         return $cervezaEncontrada;
-    }
-    */
+    }*/
+    
 }

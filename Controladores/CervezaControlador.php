@@ -9,42 +9,29 @@ use Vistas;
 
 class CervezaControlador
 {
+    private $datoCerveza;
+
+    public function __construct()
+    {
+        $this->datoCerveza = DAOCerveza::getInstance();
+        //aca en lugar del dao tengo q poner lo de la base de datos
+        //y es lo que tengo que comentar
+    }
+
 	public function alta()
 	{
 		require_once 'Vistas/AltaCerveza.php';	
 	}
 
-    // Aca entra cuando le hacen el submit
-    // al formulario de alta.
-    public function darDeAlta()
+    public function darDeAlta($nombre, $descripcion, $imagen, $precio, $stock)
     {
-        // Obtengo los valores 
-        $request = new Request();
-        $parametros = $request->getParametros();
-
-        // Aca creo el modelo y le seteo los params
         $cerveza = new Modelos\Cerveza();
-
-        // Seteo el nombre
-        $nombre = $parametros['nombre'];
         $cerveza->setNombre($nombre);
-
-        $descripcion = $parametros['descripcion'];
         $cerveza->setDescripcion($descripcion);
-
-        $imagen = $parametros['imagen'];
-        //$imagen->setImagen($imagen);
-
-        $precio = $parametros['precio'];
-        //$precio->setPrecio($precio);
-
-        //$stock = $parametros['stock'];
-        //$stock->setStock($stock);
-
-        //$cerveza
-        DAOCerveza::getInstance()->agregar($cerveza);
-
-        //header al formulario de agregar
+        $cerveza->setPrecio($precio);
+        $cerveza->setStock($stock);
+        $cerveza->setImagen($imagen);
+        $this->datoCerveza->agregar($cerveza);
         header("Location: ../cerveza/alta");
     }
 
@@ -68,39 +55,10 @@ class CervezaControlador
         print_r($cerveza);
     }*/
 
-    public function baja(){
-        require_once 'Vistas/EliminarCerveza.php';  
-    }
-
-	public function darDeBaja($id){
-        $request = new Request();
-        $parametros = $request->getParametros();
-
-        $idBuscado = $parametros['id'];
-
-
-        DAOCerveza::getInstance()->eliminar($idBuscado);
-
-        //header al formulario de agregar
-        header("Location: ../cerveza/baja");
-
-	}
-
-    public function consulta(){
-        require_once 'Vistas/ConsultarCerveza.php';  
-    }
-
-
-    public function hacerConsulta($id){
-        $request = new Request();
-        $parametros = $request->getParametros();
-
-        $idBuscado = $parametros['id'];
-
-        DAOCerveza::getInstance()->buscar($idBuscado);
-        
-        header("Location: ../cerveza/consulta");
-
+    public function baja($id)
+    {   
+        $this->datoCerveza->eliminar($id);
+        header("Location: ../../cerveza/listar");    
     }
 
     public function listar()
@@ -110,15 +68,22 @@ class CervezaControlador
 
     public function getListaCervezas()
     {
-        return DAOCerveza::getInstance()->getLista();
+        return $this->datoCerveza->getLista();
     }
 
-    public function bla()
+    public function modificar($idCerveza)
     {
-        return 'blaaaa';
+        $cerveza = $this->datoCerveza->buscar($idCerveza);
+        $GLOBALS['cerveza'] = $cerveza;
+        require_once 'Vistas/ModificarCervezas.php';  
     }
 
-
-	
-
+    public function guardarCambios($idCerveza, $parametros)
+    {
+        $request = new Request();
+        $parametros = $request->getParametros();   
+        $idCerveza = $parametros['id'];
+        $this->datoCerveza->modificar($idCerveza, $parametros);    
+        header("Location: ../cerveza/listar");
+    }
 }
