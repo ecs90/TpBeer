@@ -5,7 +5,8 @@ namespace DAOs;
 interface IDAO
 {
     public function agregar($modelo);
-    //public function getAll();
-    public function eliminar($modelo);
-    public function buscar($modelo);
+    public function getLista();
+    public function eliminar($id);
+    public function buscar($id);
+    public function modificar($id, $parametros);
 }

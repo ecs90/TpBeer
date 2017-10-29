@@ -5,6 +5,7 @@ namespace Controladores;
 use Config\Request;
 use Modelos;
 use DAOs\DAOCerveza;
+use DAOs\BDCerveza;
 use Vistas;
 
 class CervezaControlador
@@ -13,7 +14,9 @@ class CervezaControlador
 
     public function __construct()
     {
-        $this->datoCerveza = DAOCerveza::getInstance();
+        //$this->datoCerveza = DAOCerveza::getInstance();
+        $this->datoCerveza = BDCerveza::getInstance();
+
         //aca en lugar del dao tengo q poner lo de la base de datos
         //y es lo que tengo que comentar
     }
@@ -23,7 +26,7 @@ class CervezaControlador
 		require_once 'Vistas/AltaCerveza.php';	
 	}
 
-    public function darDeAlta($nombre, $descripcion, $imagen, $precio, $stock)
+    public function darDeAlta($nombre, $descripcion, $precio, $stock, $imagen)
     {
         $cerveza = new Modelos\Cerveza();
         $cerveza->setNombre($nombre);

@@ -13,7 +13,7 @@
 				<input type="text" id="descripcion" name="descripcion" >
 				<br><br>
 				<label for="precio">Precio:</label>
-				<input type="n" id="precio" name="precio" >
+				<input type="number" step="0.01" id="precio" name="precio" >
 				<br><br>
 				<label for="stock">Stock:</label>
 				<input type="number" id="stock" name="stock" >
