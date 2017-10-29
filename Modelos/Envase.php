@@ -6,6 +6,7 @@
 		private $factor;
 		private $descripcion;
 		private $imagen;
+		private $id;
 		
 
 		public function setVolumen($volumen){
@@ -38,6 +39,14 @@
 
 		public function getImagen(){
 			return $this->imagen;
+		}
+
+		public function setId($id){
+			$this->id = $id;
+		}
+
+		public function getId(){
+			return $this->id;
 		}
 
 	}

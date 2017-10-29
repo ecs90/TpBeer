@@ -39,17 +39,17 @@ class DAOCerveza extends Singleton implements IDAO
 
         if (isset($_SESSION['CERVEZA'])) {
             $listaCerveza = $_SESSION['CERVEZA'];
-            $i=0;
-            for($i=0; $i < count($listaCerveza); $i++){
-                if($listaCerveza[$i]->getId() == $id){
+
+            foreach ($listaCerveza as $i => $cerveza) {
+                if ($listaCerveza[$i]->getId() == $id){
                     unset($listaCerveza[$i]);
                 }
             }
+            
             $_SESSION['CERVEZA'] = $listaCerveza;    
         }
-        
-
     }
+
     public function buscar($id){
         session_start();
         if (isset($_SESSION['CERVEZA'])) {
@@ -89,23 +89,5 @@ class DAOCerveza extends Singleton implements IDAO
         }
         return false;
     }
-    
-
-    /////////////HACER!!!!!!!!!!!!!!!!!!////////////////////////////////////////
-    /*public function modificar(){
-        session_start();
-
-        if (!isset($_SESSION['CERVEZA'])) {
-            $listaCerveza = $_SESSION['CERVEZA'];
-            $i=0;
-            for(i=0; i=count($listaCerveza); i++){
-                if($listaCerveza[i] === $cerveza){
-                    $cervezaEncontrada = $listaCerveza[i]; 
-                }
-            }
-        }
-        $_SESSION['CERVEZA'][] = $listaCerveza;
-        return $cervezaEncontrada;
-    }*/
-    
+   
 }
