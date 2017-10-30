@@ -3,6 +3,7 @@
 use Config\Request;
 use Modelos;
 use DAOs\DAOSucursal;
+use DAOs\BDSucursal;
 use Vistas;
 
 class SucursalControlador 
@@ -12,9 +13,8 @@ class SucursalControlador
 
     public function __construct()
     {
-        $this->datoSucursal = DAOSucursal::getInstance();
-        //aca en lugar del dao tengo q poner lo de la base de datos
-        //y es lo que tengo que comentar
+        //$this->datoSucursal = DAOSucursal::getInstance();
+        $this->datoSucursal = BDSucursal::getInstance();
     }
 
     public function alta(){
