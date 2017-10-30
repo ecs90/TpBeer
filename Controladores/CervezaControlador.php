@@ -15,10 +15,11 @@ class CervezaControlador
     public function __construct()
     {
         //$this->datoCerveza = DAOCerveza::getInstance();
-        $this->datoCerveza = BDCerveza::getInstance();
 
         //aca en lugar del dao tengo q poner lo de la base de datos
         //y es lo que tengo que comentar
+        $this->datoCerveza = BDCerveza::getInstance();
+
     }
 
 	public function alta()

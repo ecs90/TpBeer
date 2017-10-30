@@ -10,3 +10,15 @@ CREATE TABLE `tpbeer`.`cervezas` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC)
 );
+
+CREATE TABLE `tpbeer`.`envases` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `volumen` FLOAT NOT NULL,
+  `factor` FLOAT NOT NULL,
+  `descripcion` MEDIUMTEXT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC)
+); 
+        
+        
+        

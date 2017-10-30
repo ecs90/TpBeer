@@ -3,6 +3,7 @@
 use Config\Request;
 use Modelos;
 use DAOs\DAOEnvase;
+use DAOs\BDEnvase;
 use Vistas;
 
 class EnvaseControlador {
@@ -11,9 +12,8 @@ class EnvaseControlador {
 
     public function __construct()
     {
-        $this->datoEnvase = DAOEnvase::getInstance();
-        //aca en lugar del dao tengo q poner lo de la base de datos
-        //y es lo que tengo que comentar
+        //$this->datoEnvase = DAOEnvase::getInstance();
+        $this->datoEnvase = BDEnvase::getInstance();
     }
 
     public function alta(){
