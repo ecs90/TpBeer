@@ -17,6 +17,7 @@ class EnvaseControlador {
     }
 
     public function alta(){
+        require_once('Vistas/Administrador.php');
         require_once 'Vistas/AltaEnvase.php';
     }
 
@@ -53,6 +54,7 @@ class EnvaseControlador {
 
     public function listar()
     {
+        require_once('Vistas/Administrador.php');
         require_once('Vistas/ListarEnvases.php');    
     }
 

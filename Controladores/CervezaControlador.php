@@ -24,6 +24,7 @@ class CervezaControlador
 
 	public function alta()
 	{
+        require_once('Vistas/Administrador.php');
 		require_once 'Vistas/AltaCerveza.php';	
 	}
 
@@ -67,6 +68,7 @@ class CervezaControlador
 
     public function listar()
     {
+        require_once('Vistas/Administrador.php');
         require_once('Vistas/ListarCervezas.php');    
     }
 

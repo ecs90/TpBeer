@@ -18,6 +18,7 @@ class SucursalControlador
     }
 
     public function alta(){
+        require_once('Vistas/Administrador.php');
         require_once 'Vistas/AltaSucursal.php';
     }
 
@@ -34,6 +35,7 @@ class SucursalControlador
 
      public function listar()
     {
+        require_once('Vistas/Administrador.php');
         require_once('Vistas/ListarSucursales.php');    
     }
 

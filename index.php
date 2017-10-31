@@ -10,6 +10,13 @@ use Config\Router;
 Autoload::start();
 
 $request = new Request();
-
 $router = new Router();
+
+require_once 'Vistas/header.php';
+
 $router->direccionar($request);
+
+require_once 'Vistas/footer.php';
+
+?>
+

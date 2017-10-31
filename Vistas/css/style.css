@@ -1,0 +1,16 @@
+body{
+	background-image: url(../img/bg-textura.png);
+}
+
+.login{
+	color: black;
+	margin-top: 2%;
+	background-color: grey;
+	opacity: 0.7;
+}
+
+.page-header{
+	color: black;
+	background-color: grey;
+	opacity: 0.8;
+}

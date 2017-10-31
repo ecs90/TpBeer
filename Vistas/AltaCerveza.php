@@ -5,7 +5,7 @@
 	</head>
 	<body>
 		<center>
-			<form action="darDeAlta" method="post">
+			<form action="/TpBeer/Cerveza/darDeAlta" method="post">
 				<label for="nombre">Nombre:</label>
 				<input type="text" id="nombre" name="nombre" >
 				<br><br>

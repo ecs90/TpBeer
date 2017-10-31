@@ -1,6 +1,6 @@
-create database tbpeer;
+create database tpbeer;
 
-use tbpeer;
+use tpbeer;
 
 CREATE TABLE `tpbeer`.`cervezas` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
