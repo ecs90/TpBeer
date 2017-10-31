@@ -27,7 +27,7 @@ class Request
 		// de que el arreglo llegue vacío
         // Si el arreglo tiene datos, tomo como controlador el primer elemento.
 		if (empty($partes)) {
-            $this->controlador = 'login';
+            $this->controlador = 'Login';
         } else {
             $this->controlador = ucwords(array_shift($partes));
         }

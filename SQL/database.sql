@@ -35,9 +35,11 @@ CREATE TABLE `tpbeer`.`usuarios` (
   `domicilio` VARCHAR(100) NOT NULL,
   `telefono` int  NOT NULL,
   `email` VARCHAR(80) NOT NULL,
-  `username` VARCHAR(100) NOT NULL,
+  `username` VARCHAR(100) NOT NULL UNIQUE,
   `contrasenia` VARCHAR(100) NOT NULL,
+  `admin` TINYINT NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
+
   UNIQUE INDEX `id_UNIQUE` (`id` ASC)
 );
 
