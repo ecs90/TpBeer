@@ -4,7 +4,7 @@
     <title>Registro</title>
 </head>
 <body>
-    <form action="AltaRegistro" method="post">
+    <form action="/TpBeer/Usuario/darDeAlta" method="post">
         <table>
             <tr>
                 <td><center>Registrarse</center></td>

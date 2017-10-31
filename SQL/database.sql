@@ -28,6 +28,21 @@ CREATE TABLE `tpbeer`.`sucursales` (
   UNIQUE INDEX `id_UNIQUE` (`id` ASC)
 );
 
+CREATE TABLE `tpbeer`.`usuarios` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(100) NOT NULL,
+  `apellido` VARCHAR(100) NOT NULL,
+  `domicilio` VARCHAR(100) NOT NULL,
+  `telefono` int  NOT NULL,
+  `email` VARCHAR(80) NOT NULL,
+  `username` VARCHAR(100) NOT NULL,
+  `contrasenia` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC)
+);
+
+
+
 
  
         

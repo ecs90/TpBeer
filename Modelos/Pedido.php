@@ -10,7 +10,7 @@
 		private $tipo_entrega;
 		private $sucursal;
 		private $monto_final;
-		private $lineas?;
+		private $lineas?;//las cervezas q compra
 
 		public function setId_pedido($id_pedido){
 			$this->id_pedido = $id_pedido;

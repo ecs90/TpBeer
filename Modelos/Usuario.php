@@ -1,23 +1,25 @@
 <?php namespace Modelos;
 
 class Usuario{
-	protected $nombre;
-	protected $apellido;
-	protected $domicilio;
-	protected $telefono;
-	protected $email;
-	protected $usuario;
-	protected $contrasenia;
+	private $nombre;
+	private $apellido;
+	private $domicilio;
+	private $telefono;
+	private $email;
+	private $username;
+	private $contrasenia;
+	private $id;
 
-	public function __construct($nombre, $apellido, $domicilio, $telefono, $email, $usuario, $contrasenia){
+
+	/*public function __construct($nombre, $apellido, $domicilio, $telefono, $email, $username, $contrasenia){
 		$this->nombre= $nombre;
 		$this->apellido= $apellido;
 		$this->domicilio= $domicilio;
 		$this->telefono= $telefono;
 		$this->email= $email;
-		$this->usuario= $usuario;
+		$this->username= $username;
 		$this->contrasenia= $contrasenia;
-	}
+	}*/
 
 	public function setNombre($nombre){
 		$this->nombre= $nombre;
@@ -39,8 +41,8 @@ class Usuario{
 		$this->email= $email;
 	}
 
-	public function setUsuario($usuario){
-		$this->usuario= $usuario;
+	public function setUsername($username){
+		$this->username= $username;
 	}
 
 	public function setContrasenia($contrasenia){
@@ -63,8 +65,8 @@ class Usuario{
 		return $this->email;
 	}
 
-	public function getUsuario(){
-		return $this->usuario;
+	public function getUsername(){
+		return $this->username;
 	}
 
 	public function getContrasenia(){
@@ -74,6 +76,15 @@ class Usuario{
 	public function getTelefono(){
 		return $this->telefono;
 	}
+
+	public function setId($id){
+        $this->id = $id;
+    }
+
+    public function getId(){
+        return $this->id;
+    }
+
 
 }
 ?>
