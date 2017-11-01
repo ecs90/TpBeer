@@ -113,8 +113,14 @@ class BDUsuario extends Singleton implements IDAO
 
     public function modificar($id, $parametros){
         $query = "
+
             UPDATE usuarios
-            SET nombre = :nombre, apellido = :apellido, domicilio = :domicilio, telefono = :telefono, email = :email, username = :username
+            SET nombre = :nombre,
+                apellido = :apellido,
+                domicilio = :domicilio,
+                telefono = :telefono,
+                email = :email,
+                username = :username
             WHERE id = :id;";
 
         $connection = new Connection();
@@ -137,5 +143,36 @@ class BDUsuario extends Singleton implements IDAO
         $command->bindParam(':username', $username);
         
         $command->execute();
+    }
+
+    public function getUsuarioPorUsername($username)
+    {
+        $query = "SELECT * FROM usuarios WHERE username=:username;";
+
+        $connection = new Connection();
+        $pdo = $connection->connect();
+        $command = $pdo->prepare($query);
+        $command->bindParam(':username', $username);
+        $command->execute();
+
+        $row = $command->fetch();
+
+        if (!$row) {
+            return null;
+        }
+
+        $usuario = new Modelos\Usuario();
+
+        $usuario->setId($row['id']);
+        $usuario->setNombre($row['nombre']);
+        $usuario->setApellido($row['apellido']);
+        $usuario->setDomicilio($row['domicilio']);
+        $usuario->setTelefono($row['telefono']);
+        $usuario->setEmail($row['email']);
+        $usuario->setUsername($row['username']);
+        $usuario->setContrasenia($row['contrasenia']);
+        $usuario->setAdmin($row['admin']);
+        
+        return $usuario;
     }
 }

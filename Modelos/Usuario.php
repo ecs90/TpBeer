@@ -9,6 +9,7 @@ class Usuario{
 	private $username;
 	private $contrasenia;
 	private $id;
+	private $admin;
 
 
 	/*public function __construct($nombre, $apellido, $domicilio, $telefono, $email, $username, $contrasenia){
@@ -85,6 +86,12 @@ class Usuario{
         return $this->id;
     }
 
+    public function setAdmin($admin){
+        $this->admin = $admin;
+    }
 
+    public function getAdmin(){
+        return $this->admin;
+    }
 }
 ?>

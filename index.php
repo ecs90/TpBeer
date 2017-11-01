@@ -12,11 +12,6 @@ Autoload::start();
 $request = new Request();
 $router = new Router();
 
-require_once 'Vistas/header.php';
+session_start();
 
 $router->direccionar($request);
-
-require_once 'Vistas/footer.php';
-
-?>
-

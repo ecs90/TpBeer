@@ -1,7 +1,7 @@
 
 <div class="container login">
 	<h1 align="center">Login</h1>
-	<form action="/TpBeer/login/ProcesarLogin" method="post">
+	<form action="/TpBeer/login/procesarLogin" method="post">
 	  	<div class="form-group">
 	    	<label for="Usuario">Usuario</label>
 	    	<input type="text" class="form-control" id="usuario" name="usuario">
