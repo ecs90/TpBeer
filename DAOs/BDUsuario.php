@@ -58,13 +58,14 @@ class BDUsuario extends Singleton implements IDAO
         while ($row = $command->fetch()) {
             $usuario = new Modelos\Usuario();
 
+            $usuario->setId($row['id']);
             $usuario->setNombre($row['nombre']);
             $usuario->setApellido($row['apellido']);
             $usuario->setDomicilio($row['domicilio']);
             $usuario->setTelefono($row['telefono']);
             $usuario->setEmail($row['email']);
             $usuario->setUsername($row['username']);
-            $usuario->setContrasenia($row['password']);
+            $usuario->setContrasenia($row['contrasenia']);
             
 
             array_push($lista, $usuario);
@@ -75,7 +76,7 @@ class BDUsuario extends Singleton implements IDAO
 
     public function eliminar($id){
 
-        $query = "DELETE FROM usuario WHERE id = :id;";
+        $query = "DELETE FROM usuarios WHERE id = :id;";
 
         $connection = new Connection();
         $pdo = $connection->connect();
@@ -86,8 +87,7 @@ class BDUsuario extends Singleton implements IDAO
     }
 
     public function buscar($id){
-
-        $query = "SELECT * FROM usuario WHERE id = :id;";
+        $query = "SELECT * FROM usuarios WHERE id = :id;";
 
         $connection = new Connection();
         $pdo = $connection->connect();
@@ -95,26 +95,26 @@ class BDUsuario extends Singleton implements IDAO
 
         $command->bindParam(':id', $id);
         $command->execute();
-
         $row = $command->fetch();
 
         $usuario = new Modelos\Usuario();
 
+        $usuario->setId($row['id']);
         $usuario->setNombre($row['nombre']);
         $usuario->setApellido($row['apellido']);
         $usuario->setDomicilio($row['domicilio']);
         $usuario->setTelefono($row['telefono']);
         $usuario->setEmail($row['email']);
         $usuario->setUsername($row['username']);
-        $usuario->setContrasenia($row['password']);
+        $usuario->setContrasenia($row['contrasenia']);
 
         return $usuario;
     }
 
     public function modificar($id, $parametros){
         $query = "
-            UPDATE usuario
-            SET nombre = :nombre, apellido = :apellido, domicilio = :domicilio, telefono = :telefono, email = :email, username = :username, password = :password
+            UPDATE usuarios
+            SET nombre = :nombre, apellido = :apellido, domicilio = :domicilio, telefono = :telefono, email = :email, username = :username
             WHERE id = :id;";
 
         $connection = new Connection();
@@ -127,15 +127,14 @@ class BDUsuario extends Singleton implements IDAO
         $telefono = $parametros['telefono'];
         $email = $parametros['email'];
         $username = $parametros['username'];
-        $password = $parametros['password'];
 
+        $command->bindParam(':id', $id);
         $command->bindParam(':nombre', $nombre);
         $command->bindParam(':apellido', $apellido);
         $command->bindParam(':domicilio', $domicilio);
         $command->bindParam(':telefono', $telefono);
         $command->bindParam(':email', $email);
-        $command->bindParam(':usuario', $username);
-        $command->bindParam(':contrasenia', $password);
+        $command->bindParam(':username', $username);
         
         $command->execute();
     }

@@ -32,16 +32,16 @@ class UsuarioControlador {
         $usuario->setUsername($username);
         $usuario->setContrasenia($contrasenia);
 
-        echo "entra1";
+        
         $this->datoUsuario->agregar($usuario);
-        echo "entra2";
-       // header("Location: ../usuario/alta");
+        
+        header("Location: ../usuario/alta");
     }
 
 
     public function listar()
     {
-        require_once('Vistas/ListarUsuario.php');    
+        require_once('Vistas/ListarUsuarios.php');    
     }
 
     public function getListaUsuarios()
@@ -53,7 +53,7 @@ class UsuarioControlador {
     {
         $usuario = $this->datoUsuario->buscar($idUsuario);
         $GLOBALS['usuario'] = $usuario;
-        require_once 'Vistas/ModificarUsuario.php';  
+        require_once 'Vistas/ModificarUsuarios.php';  
     }
 
     public function guardarCambios($idUsuario, $parametros)
