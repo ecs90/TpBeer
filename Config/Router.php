@@ -11,7 +11,6 @@ class Router
 {
 	public function direccionar(Request $request)
 	{
-		// Identificamos el controlador.
 		$claseControlador = 'Controladores\\'.$request->getControlador().'Controlador';
 		$controlador = new $claseControlador();
 		

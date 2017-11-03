@@ -7,26 +7,28 @@ use Config\Singleton;
 class DAOCerveza extends Singleton implements IDAO 
 {
     public function agregar($cerveza){
-        session_start();
+        //session_start();
 
         if (!isset($_SESSION['CERVEZA'])) {
             $_SESSION['CERVEZA'] = array();
         }
         $lista = $_SESSION['CERVEZA'];
 
-        $cerveza->setId(count($lista)+1);
+        $cervezaParametro = $lista[count($lista)];
+        $parametro = $cervezaParametro->getId;
+        $cerveza->setId(($parametro)+1);
 
         array_push($lista, $cerveza);
 
         $_SESSION['CERVEZA'] = $lista;
 
-        //$_SESSION['CERVEZA'][] = $cerveza;
+        
 
     }
 
     public function getLista()
     {
-        session_start();
+        //session_start();
         if (!isset($_SESSION['CERVEZA'])) {
             echo 'vacio';
         }
@@ -35,7 +37,7 @@ class DAOCerveza extends Singleton implements IDAO
 
     
     public function eliminar($id){
-        session_start();
+        //session_start();
 
         if (isset($_SESSION['CERVEZA'])) {
             $listaCerveza = $_SESSION['CERVEZA'];
@@ -51,7 +53,7 @@ class DAOCerveza extends Singleton implements IDAO
     }
 
     public function buscar($id){
-        session_start();
+        //session_start();
         if (isset($_SESSION['CERVEZA'])) {
             $listaCerveza = $_SESSION['CERVEZA'];
             $i=0;
@@ -66,7 +68,7 @@ class DAOCerveza extends Singleton implements IDAO
 
     public function modificar($id, $parametros)
     {
-        session_start();
+        //session_start();
         if (isset($_SESSION['CERVEZA'])) {
             $listaCerveza = $_SESSION['CERVEZA'];
             $i=0;

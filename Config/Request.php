@@ -40,12 +40,13 @@ class Request
             $this->metodo = strtolower(array_shift($partes));
         }
 
-        //ESTO LO TENGO QUE CAMBIAR!!!!!!!!!!!!!!!!!!!!!!!
+        //ESTO YA LO CAMBIE. ANDA, PORQ LO DICTO JONI
         // Capturo el metodo de petición y lo guardo en una variable
 		if ($this->getMetodoRequest() == 'GET') {   
-			if (!empty($partes)) {
-				$this->parametros = $partes;
-			}
+			
+				$this->parametros = $_GET;
+                array_shift($this->parametros);
+			
 		} else {
 			$this->parametros = $_POST;
 		}

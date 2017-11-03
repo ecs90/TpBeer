@@ -11,6 +11,8 @@ CREATE TABLE `tpbeer`.`cervezas` (
   UNIQUE INDEX `id_UNIQUE` (`id` ASC)
 );
 
+
+
 CREATE TABLE `tpbeer`.`envases` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `volumen` FLOAT NOT NULL,
