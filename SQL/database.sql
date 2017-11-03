@@ -39,7 +39,6 @@ CREATE TABLE `tpbeer`.`usuarios` (
   `contrasenia` VARCHAR(100) NOT NULL,
   `admin` TINYINT NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
-
   UNIQUE INDEX `id_UNIQUE` (`id` ASC)
 );
 

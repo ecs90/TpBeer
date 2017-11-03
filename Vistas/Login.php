@@ -1,4 +1,6 @@
-
+<?php  
+	require_once 'header.php';
+?>
 <div class="container login">
 	<h1 align="center">Login</h1>
 	<form action="/TpBeer/login/procesarLogin" method="post">
@@ -14,3 +16,6 @@
 		<br><br>
 	</form>
 </div>
+<?php  
+	require_once 'footer.php';
+?>

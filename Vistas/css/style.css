@@ -2,6 +2,12 @@ body{
 	background-image: url(../img/bg-textura.png);
 }
 
+.admin-header{
+	color: white;
+	background-image: url(../img/admin-head.jpg);
+	background-size: 100%;
+}
+
 .login{
 	color: black;
 	margin-top: 2%;
@@ -12,5 +18,16 @@ body{
 .page-header{
 	color: black;
 	background-color: grey;
-	opacity: 0.8;
+}
+
+.bg-dark{
+	color: white;
+}
+
+.container-marg{
+	margin-top: 2%;
+	border-radius: 34px 34px 34px 34px;
+	-moz-border-radius: 34px 34px 34px 34px;
+	-webkit-border-radius: 34px 34px 34px 34px;
+	border: 1px solid #000000;
 }
