@@ -5,7 +5,7 @@ use Config\Singleton;
 class DAOLineaPedido extends Singleton implements IDAO {
 
 	public function agregar($lineaPedido){
-		session_start();
+		//session_start();
 
 		if (!isset($_SESSION['LINEAPEDIDO'])) {
             $_SESSION['LINEAPEDIDO'] = array();
@@ -21,7 +21,7 @@ class DAOLineaPedido extends Singleton implements IDAO {
 
 	public function getLista()
     {
-        session_start();
+        //session_start();
         if (!isset($_SESSION['LINEAPEDIDO'])) {
             echo 'vacio';
         }
@@ -29,7 +29,7 @@ class DAOLineaPedido extends Singleton implements IDAO {
     }
 
     public function eliminar($id){
-        session_start();
+        //session_start();
 
         if (isset($_SESSION['LINEAPEDIDO'])) {
             $listaLinea = $_SESSION['LINEAPEDIDO'];
@@ -45,7 +45,7 @@ class DAOLineaPedido extends Singleton implements IDAO {
     }
 
     public function buscar($id){
-        session_start();
+        //session_start();
         if (isset($_SESSION['LINEAPEDIDO'])) {
             $listaLinea = $_SESSION['LINEAPEDIDO'];
             $i=0;
@@ -60,7 +60,7 @@ class DAOLineaPedido extends Singleton implements IDAO {
 
     public function modificar($id, $parametros)
     {
-        session_start();
+        //session_start();
         if (isset($_SESSION['LINEAPEDIDO'])) {
             $listaLinea = $_SESSION['LINEAPEDIDO'];
             $i=0;
