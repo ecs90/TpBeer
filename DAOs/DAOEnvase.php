@@ -14,7 +14,9 @@ class DAOEnvase extends Singleton implements IDAO
         }
         $lista = $_SESSION['ENVASE'];
 
-        $envase->setId(count($lista)+1);
+        $envParametro = $lista[count($lista)];
+        $parametro = $envParametro->getId;
+        $envase->setId(($parametro)+1);
 
         array_push($lista, $envase);
 

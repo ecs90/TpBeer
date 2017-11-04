@@ -14,7 +14,9 @@ class DAOUsuario extends Singleton implements IDAO
         }
         $lista = $_SESSION['USUARIO'];
 
-        $usuario->setId(count($lista)+1);
+        $usuarioParametro = $lista[count($lista)];
+        $parametro = $usuarioParametro->getId;
+        $usuario->setId(($parametro)+1);
 
         array_push($lista, $usuario);
 

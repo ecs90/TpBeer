@@ -14,7 +14,9 @@ class DAOSucursal extends Singleton implements IDAO
         }
         $lista = $_SESSION['SUCURSAL'];
 
-        $sucursal->setId(count($lista)+1);
+        $sucParametro = $lista[count($lista)];
+        $parametro = $sucParametro->getId;
+        $sucursal->setId(($parametro)+1);
 
         array_push($lista, $sucursal);
 
