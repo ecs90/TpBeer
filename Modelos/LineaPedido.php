@@ -52,5 +52,9 @@ Class LineaPedido{
 	public function getId(){
 		return $this->id;
 	}
+
+	public function getPrecio(){
+		return $this->precio;
+	}
 }
 ?>
