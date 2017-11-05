@@ -14,4 +14,3 @@
 	<link rel="stylesheet" type="text/css" href="\TpBeer\Vistas\css\style.css">
 
 </head>
-<body class="InitBody">

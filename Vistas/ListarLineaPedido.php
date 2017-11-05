@@ -7,12 +7,12 @@
         <?php foreach ($this->getListaLineaPedido() as $lineaPedido) : ?>
 
              <li>   
-                <b>Cerveza: </b> <?php echo /*Falta imagen*/"Nombre: ".$lineaPedido->getCerveza()->getNombre().", Descripcion: ".$lineaPedido->getCerveza()->getDescripcion().", Precio: ".$lineaPedido->getCerveza()->getPrecio(); ?>
+                <b>Cerveza: <b> <?php echo $lineaPedido->getCerveza(); ?>
                 
             <br> 
-                <b>Envase: </b> <?php echo /*Falta imagen*/"Volumen: ".$lineaPedido->getEnvase()->getVolumen().", Descripcion: ".$lineaPedido->getEnvase()->getDescripcion().", Factor de modificacion del precio: ".$lineaPedido->getEnvase()->getFactor(); ?> 
+                <b>Envase: <b> <?php echo $lineaPedido->getEnvase(); ?> 
             <br>
-                <b>Precio: </b> <?php echo $lineaPedido->getPrecio(); ?>
+                <b>Precio: <b> <?php echo $lineaPedido->getPrecio(); ?>
             </li> 
              
             <a href="modificar/<?php echo $lineaPedido->getId(); ?>">Modificar</a>
