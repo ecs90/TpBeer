@@ -5,12 +5,24 @@ use Config\Singleton;
 class DAOLineaPedido extends Singleton implements IDAO {
 
 	public function agregar($lineaPedido){
-		session_start();
+		//session_start();
 
 		if (!isset($_SESSION['LINEAPEDIDO'])) {
             $_SESSION['LINEAPEDIDO'] = array();
         }
         $lista = $_SESSION['LINEAPEDIDO'];
+
+
+        //FIJATE EZE SI CAMBIAMOS ACA, ESTO ES LO QUE HICE YO
+        //PARA QUE NO SE REPITAN LOS IDS
+        //ANDA PERO NO LO REVISE PARA OPTIMIZARLO
+        //PUEDE ESTAR BASTANTE CHANCHO
+
+        //$linParametro = $lista[count($lista)];
+        //$parametro = $linParametro->getId;
+        //$lineaPedido->setId(($parametro)+1);
+
+        //SERIA SACAR ESA LINEA DE ABAJO Y HABILITAR ESTO
 
         $lineaPedido->setId(count($lista)+1);
 
@@ -21,7 +33,7 @@ class DAOLineaPedido extends Singleton implements IDAO {
 
 	public function getLista()
     {
-        session_start();
+       // session_start();
         if (!isset($_SESSION['LINEAPEDIDO'])) {
             echo 'vacio';
         }
@@ -29,7 +41,7 @@ class DAOLineaPedido extends Singleton implements IDAO {
     }
 
     public function eliminar($id){
-        session_start();
+      //  session_start();
 
         if (isset($_SESSION['LINEAPEDIDO'])) {
             $listaLinea = $_SESSION['LINEAPEDIDO'];
@@ -45,7 +57,7 @@ class DAOLineaPedido extends Singleton implements IDAO {
     }
 
     public function buscar($id){
-        session_start();
+      //  session_start();
         if (isset($_SESSION['LINEAPEDIDO'])) {
             $listaLinea = $_SESSION['LINEAPEDIDO'];
             $i=0;
@@ -60,7 +72,7 @@ class DAOLineaPedido extends Singleton implements IDAO {
 
     public function modificar($id, $parametros)
     {
-        session_start();
+        //session_start();
         if (isset($_SESSION['LINEAPEDIDO'])) {
             $listaLinea = $_SESSION['LINEAPEDIDO'];
             $i=0;

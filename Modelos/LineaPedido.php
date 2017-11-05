@@ -3,18 +3,18 @@
 use Modelos\Cerveza;
 use Modelos\Envase;
 
-Class LineaPedido{
+
+class LineaPedido{
+
+	private $id;
 	private $cerveza;
 	private $envase;
 	private $cantidad;
 	private $precio;
-	private $id;
-
-	public function __construct($cerveza, $envase, $cantidad){
-			$this->cerveza = $cerveza;
-			$this->envase = $envase;
-			$this->precio= ($this->cerveza->getPrecio())*($this->envase->getFactor());
-			$this->cantidad = $cantidad;
+	private $id_pedido;
+	
+	public function setId($id){
+		$this->id= $id;
 	}
 
 	public function setCerveza($cerveza){
@@ -29,12 +29,27 @@ Class LineaPedido{
 		$this->cantidad = $cantidad;
 	}
 
-	public function setPrecio($cerveza, $envase){
-		$this->precio= ($cerveza->getPrecio())*($envase->getFactor());
+	public function setPrecio($precio){
+		$this->precio = $precio;
 	}
 
-	public function setId($id){
-		$this->id= $id;
+	public function setIdPedido($id_pedido){
+		$this->id_pedido = $id_pedido;
+	}
+
+	public function calcularPrecio(){
+		$this->precio = (
+			$this->getCerveza()->getPrecio() * $this->getEnvase()->getFactor()
+		);
+	}
+
+	public function calcularSubtotal()
+	{
+		return $this->getPrecio() * $this->getCantidad();
+	}
+
+	public function getId(){
+		return $this->id;
 	}
 
 	public function getCerveza(){
@@ -49,8 +64,11 @@ Class LineaPedido{
 		return $this->cantidad;
 	}
 
-	public function getId(){
-		return $this->id;
+	public function getPrecio(){
+		return $this->precio;
 	}
+
+	public function getIdPedido(){
+		return $this->id_pedido;
+	}	
 }
-?>

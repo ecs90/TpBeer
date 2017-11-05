@@ -15,18 +15,6 @@
 
 	////////////////////////////////
 
-	class Gato extends SingletonAbstractoDAO
-	{
-
-	}
-
-	$instance['Usuario'] = new Usuario();
-	$instance['Ciudad'] = new Ciudad()
-
-
-	)
-
-	////////////////////////////////o:
 
 	class SingletonAbstractoDAO{
 		
