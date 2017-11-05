@@ -4,7 +4,7 @@
         <div class="container">
         <table class="table table-sm">
             <thead>
-            <tbody class="bg-dark">
+            <tbody class="bg-dark" style="color: white">
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nombre</th>

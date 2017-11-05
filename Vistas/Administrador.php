@@ -1,4 +1,4 @@
-<?php  
+<?php namespace Vistas; 
   require_once 'header.php';
   use Modelos\Usuario;
   use Controladores\LoginControlador;

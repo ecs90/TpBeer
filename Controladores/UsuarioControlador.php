@@ -5,6 +5,7 @@ use Modelos;
 use DAOs\DAOUsuario;
 use DAOs\BDUsuario;
 use Vistas;
+use Controladores\LoginControlador;
 
 class UsuarioControlador {
 
@@ -69,6 +70,10 @@ class UsuarioControlador {
     {   
         $this->datoUsuario->eliminar($id);
         header("Location: ../../usuario/listar");    
+    }
+
+    public function menuadmin(){
+        require_once 'Vistas/Administrador.php';
     }
 }
 ?>

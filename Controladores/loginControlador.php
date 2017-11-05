@@ -29,7 +29,7 @@
 
 			
 			if ($usuario->getAdmin() == 1) {
-				header("Location: /TpBeer/Vistas/Administrador.php");
+				header("Location: ../usuario/menuadmin");
 				return;
 			} else {
 				echo "Usuario";

@@ -81,6 +81,7 @@ class CervezaControlador
     {
         $cerveza = $this->datoCerveza->buscar($idCerveza);
         $GLOBALS['cerveza'] = $cerveza;
+        require_once('Vistas/Administrador.php');
         require_once 'Vistas/ModificarCervezas.php';  
     }
 
