@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Armar pedido</title>
-</head>
+<?php require_once 'header.php'; ?>
+
 <body>
     <center>
     <form action="../pedido/darDeAlta" method="post">
@@ -78,9 +75,10 @@
                 <input type="hidden" name="monto_final" value="<?php echo $total; ?>" >
 
                 <label for="fecha_entrega"><strong>Fecha de entrega: </strong></label>
-                <input type="date" id="fecha_entrega" name="fecha_entrega" required="required" /> 
-                <br>
+                <input type="text" id="datepicker" name="fecha_entrega" />                
 
+                <br>
+                
                 <label for="tipo_entrega"><strong>Tipo de entrega: </strong></label>
                 
                 <input type="radio" name="tipo_entrega" id="sucursal" value="0" >
@@ -106,5 +104,22 @@
             </form>
         <?php endif; ?>
     </center>
-</body>
-</html>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var date = new Date();
+            var currentMonth = date.getMonth();
+            var currentDate = date.getDate();
+            var currentYear = date.getFullYear();
+
+            $('#datepicker').datepicker({
+                minDate: new Date(currentYear, currentMonth, currentDate),
+                dateFormat: 'yy-mm-dd'
+            });
+        });
+    </script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<?php require_once 'footer.php'; ?>

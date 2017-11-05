@@ -24,7 +24,7 @@ class PedidoControlador {
     }
 
     public function alta(){
-        require_once('Vistas/Administrador.php');
+        require_once('Vistas/Cliente.php');
         require_once 'Vistas/AltaLineaPedido.php';
         //require_once 'Vistas/ListarLineaPedido.php';
     }
@@ -62,7 +62,7 @@ class PedidoControlador {
     }
 
     public function darDeAlta($id_cerveza, $id_envase, $cantidad)
-    {
+    {        
         $lineaPedido = new Modelos\LineaPedido();
 
         $cerveza = BDCerveza::getInstance()->buscar($id_cerveza);
@@ -81,7 +81,7 @@ class PedidoControlador {
 
     public function listar()
     {
-        require_once('Vistas/Administrador.php');
+        require_once('Vistas/Cliente.php');
         require_once('Vistas/ListarLineaPedido.php');    
     }
 
