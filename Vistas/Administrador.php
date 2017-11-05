@@ -1,6 +1,7 @@
 <?php  
 	require_once 'header.php';
 ?>
+<body class="InitBody bg-img-adm">
 <div class="container-fluid admin-header">
   <h1 class="display-4">Administración</h1><br>
 </div>

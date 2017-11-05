@@ -10,24 +10,30 @@
 		}
 
 		public function procesarLogin($usuario, $contrasenia){
-
 			$modelo = BDUsuario::getInstance();
 			$usuario = $modelo->getUsuarioPorUsername($usuario);
-
+			
+			$this->setUsuarioEnSession($usuario);
+			
 			if (is_null($usuario)) {
-				// no existe la usuario
+				$this->setUsuarioEnSession("error");
+				header("Location: ../Login/index");
+				return;
 			}
 
 			if ($usuario->getContrasenia() !== $contrasenia) {
-				// error de contraseña
+				$this->setUsuarioEnSession("error");
+				header("Location: ../Login/index");
+				return;
 			}
 
-			$this->setUsuarioEnSession($usuario);
-
+			
 			if ($usuario->getAdmin() == 1) {
-				// cosas de adlin
+				header("Location: /TpBeer/Vistas/Administrador.php");
+				return;
 			} else {
-				// cosas de usuario normal
+				echo "Usuario";
+				return;
 			}						
 		}
 

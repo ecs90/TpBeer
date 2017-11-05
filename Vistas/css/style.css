@@ -1,5 +1,16 @@
-body{
-	background-image: url(../img/bg-textura.png);
+table, th, tr {
+    border: black 2px solid ;
+}
+
+.bg-img-adm{
+	background-image: url(../img/bg-admin.jpg);
+	background-size: 100%;
+}
+
+.bg-img-log{
+	color: white;
+	background-image: url(../img/bg-login.jpg);
+	background-size: 100%;
 }
 
 .admin-header{
@@ -22,12 +33,4 @@ body{
 
 .bg-dark{
 	color: white;
-}
-
-.container-marg{
-	margin-top: 2%;
-	border-radius: 34px 34px 34px 34px;
-	-moz-border-radius: 34px 34px 34px 34px;
-	-webkit-border-radius: 34px 34px 34px 34px;
-	border: 1px solid #000000;
 }

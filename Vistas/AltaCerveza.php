@@ -26,33 +26,33 @@
 	require_once 'header.php';
 ?>
 
-<div class="container container-marg col-sm-4 jumbotron bg-dark text-white">
+<div class="container col-sm-5 bg-dark text-white" style="opacity: 0.7; margin-top: 20px"><br>
 	<div class="trans text-center">
-		<h3 class="display-6">Cargar cerveza</h1><br>
+		<h5 class="display-6">Cargar cerveza</h5><br>
 	</div>
 	<form action="/TpBeer/Cerveza/darDeAlta" method="post">
 		<div class="form-group row">
-			<label for="nombre" class="col-sm-3 col-form-label">Nombre</label>
+			<label for="nombre" class="col-sm-4 col-form-label">Nombre</label>
 			<div class="col-sm-8">
-      			<input type="text" class="form-control" id="nombre" name="nombre">
+      			<input type="text" class="form-control form-control-sm" id="nombre" name="nombre">
     		</div>
 		</div>
 		<div class="form-group row">
-		    <label for="descripcion" class="col-sm-3 col-form-label">Descripcion</label>
+		    <label for="descripcion" class="col-sm-4 col-form-label">Descripcion</label>
 		    <div class="col-sm-8">
-      			<textarea class="form-control" id="descripcion" name="descripcion" rows="5"></textarea>
+      			<textarea class="form-control form-control-sm" id="descripcion" name="descripcion" rows="5"></textarea>
     		</div>
   		</div>
   		<div class="form-group row">
-		    <label for="precio" class="col-sm-3 col-form-label">Precio</label>
+		    <label for="precio" class="col-sm-4 col-form-label">Precio</label>
 		    <div class="col-sm-8">
-      			<input class="form-control" type="number"  value="0" id="precio" name="precio"></input>
+      			<input class="form-control form-control-sm" type="number"  value="0" id="precio" name="precio"></input>
     		</div>
   		</div><br>
   		<div class="trans text-center">
-  			<button type="submit" class="btn btn-secondary">Submit</button>
+  			<button type="submit" class="btn btn-secondary btn-block">Cargar</button>
   		</div>
-	</form>
+	</form><br>
 </div>
 <?php  
 	require_once 'footer.php';

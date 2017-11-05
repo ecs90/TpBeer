@@ -1,9 +1,10 @@
-<html>
-    <body> 
+
+    <body class="InitBody"> 
         <br><br>
         <div class="container">
-        <table class="table table-bordered">
-            <thead class="bg-dark">
+        <table class="table table-sm">
+            <thead>
+            <tbody class="bg-dark">
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nombre</th>
@@ -20,9 +21,10 @@
                         </div>
                     </th>
                 </tr>
+            </tbody>
             </thead>
-            <thead class="thead-light">
-            <tbody>
+            <thead>
+            <tbody style="color: black;">
                 <?php foreach ($this->getListaCervezas() as $cerveza) : ?>
                     <tr class="table-active">
                         <th>   
@@ -39,12 +41,12 @@
                         </th> 
                         <th>
                             <div class="trans text-center">
-                                <a class="btn btn-warning" href="modificar/<?php echo $cerveza->getId(); ?>">Modificar</a>
+                                <a class="btn btn-warning btn-sm" href="modificar/<?php echo $cerveza->getId(); ?>">Modificar</a>
                             </div>
                         </th>
                         <th>
                             <div class="trans text-center">
-                                <a class="btn btn-danger" href="baja/<?php echo $cerveza->getId(); ?>">Eliminar</a>
+                                <a class="btn btn-danger btn-sm" href="baja/<?php echo $cerveza->getId(); ?>">Eliminar</a>
                             </div>
                         </th>
                     </tr>
@@ -53,5 +55,3 @@
             </thead>
         </table>
         </div>
-    </body>
-</html>
