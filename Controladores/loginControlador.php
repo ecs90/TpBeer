@@ -43,7 +43,8 @@
 
 		public static function getUsuarioLogueado() {
 			if (isset($_SESSION['USUARIO-LOGUEADO'])) {
-				return isset($_SESSION['USUARIO-LOGUEADO']);
+				$usuario = $_SESSION['USUARIO-LOGUEADO'];
+				return $usuario;
 			} else {
 				return null;
 			}

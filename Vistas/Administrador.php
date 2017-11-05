@@ -1,12 +1,15 @@
 <?php  
-	require_once 'header.php';
+  require_once 'header.php';
+  use Modelos\Usuario;
+  use Controladores\LoginControlador;
+  $usuario = LoginControlador::getUsuarioLogueado();
 ?>
 <body class="InitBody bg-img-adm">
 <div class="container-fluid admin-header">
   <h1 class="display-4">Administración</h1><br>
 </div>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-	<a class="navbar-brand" href="#">Admin</a>
+	<a class="navbar-brand" href="#"><?php echo $usuario->getUsername();  ?></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
   <span class="navbar-toggler-icon"></span>
   </button>

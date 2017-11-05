@@ -26,7 +26,7 @@
 	require_once 'header.php';
 ?>
 
-<div class="container col-sm-5 bg-dark text-white" style="opacity: 0.7; margin-top: 20px"><br>
+<div class="container col-sm-5 bg-dark text-white" style="margin-top: 20px; opacity: 0.9; color: black"><br>
 	<div class="trans text-center">
 		<h5 class="display-6">Cargar cerveza</h5><br>
 	</div>
@@ -48,9 +48,15 @@
 		    <div class="col-sm-8">
       			<input class="form-control form-control-sm" type="number"  value="0" id="precio" name="precio"></input>
     		</div>
+  		</div>
+  		<div class="form-group row">
+		    <label for="imagen" class="col-sm-4 col-form-label">Imagen</label>
+		    <div class="col-sm-8">
+      			<input class="form-control form-control-sm" type="file" id="imagen" name="imagen"></input>
+    		</div>
   		</div><br>
   		<div class="trans text-center">
-  			<button type="submit" class="btn btn-secondary btn-block">Cargar</button>
+  			<button type="submit" class="btn btn-light btn-block">Cargar</button>
   		</div>
 	</form><br>
 </div>

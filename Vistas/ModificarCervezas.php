@@ -6,7 +6,7 @@
 <body>
     <?php $cerveza = $GLOBALS['cerveza']; ?>
     <center>
-    <form action="../../cerveza/guardarCambios" method="post">
+    <form action="/TpBeer/cerveza/guardarCambios" method="post">
         <label for="nombre">Nombre:</label>
         <input type="hidden" name="id" value="<?php echo $cerveza->getId(); ?>" >
         <input type="text" id="nombre" name="nombre" value="<?php echo $cerveza->getNombre(); ?>" placeholder="Ingrese el nombre de la cerveza..." >
@@ -17,10 +17,6 @@
         <label for="precio">Precio:</label>
         <input type="number" id="precio" name="precio" value="<?php echo $cerveza->getPrecio(); ?>">
         <br><br>
-        <label for="stockLitros">Stock:</label>
-        <input type="number" id="stockLitros" name="stockLitros" placeholder="" value="<?php echo $cerveza->getStock(); ?>">
-        <br><br>
-        
         <label for="imagen">Imagen:</label>
         <input type="file" id="imagen" name="imagen" >
         <br><br>

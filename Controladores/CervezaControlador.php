@@ -28,13 +28,13 @@ class CervezaControlador
 		require_once 'Vistas/AltaCerveza.php';	
 	}
 
-    public function darDeAlta($nombre, $descripcion, $precio, $stock, $imagen)
+    public function darDeAlta($nombre, $descripcion, $precio,$imagen)
     {
         $cerveza = new Modelos\Cerveza();
         $cerveza->setNombre($nombre);
         $cerveza->setDescripcion($descripcion);
         $cerveza->setPrecio($precio);
-        $cerveza->setStock($stock);
+        //$cerveza->setStock($stock);
         $cerveza->setImagen($imagen);
         $this->datoCerveza->agregar($cerveza);
         header("Location: ../cerveza/alta");
@@ -63,7 +63,7 @@ class CervezaControlador
     public function baja($id)
     {   
         $this->datoCerveza->eliminar($id);
-        header("Location: ../../cerveza/listar");    
+        header("Location: /TpBeer/cerveza/listar");
     }
 
     public function listar()
