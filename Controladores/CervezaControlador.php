@@ -80,7 +80,6 @@ class CervezaControlador
     public function modificar($idCerveza)
     {
         $cerveza = $this->datoCerveza->buscar($idCerveza);
-        $GLOBALS['cerveza'] = $cerveza;
         require_once 'Vistas/ModificarCervezas.php';  
     }
 

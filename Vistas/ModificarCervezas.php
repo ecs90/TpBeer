@@ -4,7 +4,6 @@
     <title>Modificar Cervezas</title>
 </head>
 <body>
-    <?php $cerveza = $GLOBALS['cerveza']; ?>
     <center>
     <form action="/TpBeer/cerveza/guardarCambios" method="post">
         <label for="nombre">Nombre:</label>
