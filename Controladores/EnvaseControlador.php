@@ -67,6 +67,7 @@ class EnvaseControlador {
     {
         $envase = $this->datoEnvase->buscar($idEnvase);
         $GLOBALS['envase'] = $envase;
+        require_once('Vistas/Administrador.php');
         require_once 'Vistas/ModificarEnvases.php';  
     }
 

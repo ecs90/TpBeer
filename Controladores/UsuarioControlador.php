@@ -75,5 +75,9 @@ class UsuarioControlador {
     public function menuadmin(){
         require_once 'Vistas/Administrador.php';
     }
+
+    public function menuclient(){
+        require_once 'Vistas/Cliente.php';
+    }
 }
 ?>

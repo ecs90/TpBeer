@@ -32,7 +32,7 @@
 				header("Location: ../usuario/menuadmin");
 				return;
 			} else {
-				echo "Usuario";
+				header("Location: ../usuario/menuclient");
 				return;
 			}						
 		}

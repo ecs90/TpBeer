@@ -48,6 +48,7 @@ class SucursalControlador
     {
         $sucursal = $this->datoSucursal->buscar($idSucursal);
         $GLOBALS['sucursal'] = $sucursal;
+        require_once('Vistas/Administrador.php');
         require_once 'Vistas/ModificarSucursales.php';  
     }
 

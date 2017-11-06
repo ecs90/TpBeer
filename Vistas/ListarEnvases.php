@@ -1,31 +1,56 @@
-<html>
-    <body> 
-       <center>
-        <ul>
-        <?php foreach ($this->getListaEnvases() as $envase) : ?>
-
-             <li>   
-                <b>Volumen: <b> <?php echo $envase->getVolumen(); ?>
-                
-            </li> 
-            <li>
-                <b>Factor: <b> <?php echo $envase->getFactor(); ?>
-            </li> 
-            <li>
-                <b>Descripcion: <b> <?php echo $envase->getDescripcion(); ?>
-            </li> 
-            <li>
-                <b>id: <b> <?php echo $envase->getId(); ?>
-            </li> 
-            <a href="modificar/<?php echo $envase->getId(); ?>">Modificar</a>
-            <a href="baja/<?php echo $envase->getId(); ?>">Eliminar</a>
-            <br>
-
-            --------------------------------------
-                
-            <br><br>
-        <?php endforeach; ?>
-        </ul>
-    </center>
-    </body>
-</html>
+<body class="InitBody"> 
+        <br><br>
+        <div class="container">
+        <table class="table table-sm">
+            <thead>
+            <tbody class="bg-dark" style="color: white">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Volumen</th>
+                    <th scope="col">Factor</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">
+                        <div class="trans text-center">
+                            Modificar
+                        </div>
+                    </th>
+                    <th scope="col">
+                        <div class="trans text-center">
+                            Eliminar
+                        </div>
+                    </th>
+                </tr>
+            </tbody>
+            </thead>
+            <thead>
+            <tbody style="color: black;">
+                <?php foreach ($this->getListaEnvases() as $envase) : ?>
+                    <tr class="table-active">
+                        <th>
+                            <?php echo $envase->getId(); ?>
+                        </th> 
+                        <th>   
+                            <?php echo $envase->getVolumen(); ?>
+                        </th> 
+                        <th>   
+                            <?php echo $envase->getFactor(); ?>
+                        </th> 
+                        <th>
+                            <?php echo $envase->getDescripcion(); ?>
+                        </th> 
+                        <th>
+                            <div class="trans text-center">
+                                <a class="btn btn-warning btn-sm" href="modificar/<?php echo $envase->getId(); ?>">Modificar</a>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="trans text-center">
+                                <a class="btn btn-danger btn-sm" href="baja/<?php echo $envase->getId(); ?>">Eliminar</a>
+                            </div>
+                        </th>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+            </thead>
+        </table>
+        </div>
