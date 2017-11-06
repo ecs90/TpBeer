@@ -78,7 +78,7 @@ class BDPedido extends Singleton implements IDAO
 
             $pedido->setId($row['id']);
             $pedido->setFechaPedido($row['fecha_pedido']);
-            $pedido->setsetFechaEntrega($row['fecha_entrega']);
+            $pedido->setFechaEntrega($row['fecha_entrega']);
             $pedido->setEstado($row['estado']);
             $pedido->setHorario($row['horario']);
             $pedido->setTipoEntrega($row['tipo_entrega']);

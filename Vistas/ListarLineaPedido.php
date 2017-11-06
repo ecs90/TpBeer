@@ -5,9 +5,10 @@
        <center>
         <ul>
         <?php foreach ($this->getListaLineaPedido() as $lineaPedido) : ?>
-
+                
              <li>   
-                <b>Cerveza: <b> <?php echo $lineaPedido->getCerveza(); ?>
+                <b>Cerveza: <b> <?php echo $lineaPedido->getCerveza()->getNombre(); ?>
+
                 
             <br> 
                 <b>Envase: <b> <?php echo $lineaPedido->getEnvase(); ?> 

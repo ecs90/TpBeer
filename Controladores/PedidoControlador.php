@@ -26,7 +26,6 @@ class PedidoControlador {
     public function alta(){
         require_once('Vistas/Cliente.php');
         require_once 'Vistas/AltaLineaPedido.php';
-        //require_once 'Vistas/ListarLineaPedido.php';
     }
 
     public function finalizar($monto_final, $fecha_entrega, $tipo_entrega, $horario){
@@ -81,8 +80,8 @@ class PedidoControlador {
 
     public function listar()
     {
-        require_once('Vistas/Cliente.php');
-        require_once('Vistas/ListarLineaPedido.php');    
+        $pedidos = $this->datoPedido->getLista();
+        require_once('Vistas/ListarPedido.php');    
     }
 
     public function getListaLineaPedido(){
