@@ -81,6 +81,7 @@ class PedidoControlador {
     public function listar()
     {
         $pedidos = $this->datoPedido->getLista();
+        require_once('Vistas/Cliente.php');
         require_once('Vistas/ListarPedido.php');    
     }
 

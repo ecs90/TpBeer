@@ -3,7 +3,9 @@ require_once 'header.php'; ?>
 
 <center>
 <?php foreach ($pedidos as $pedido) : ?>
-
+    <br>
+    -------------------------------------------------------
+    <br>
     <label><b>Fecha Pedido:</b> </label>
     <?php echo $pedido->getFechaPedido(); ?>
     

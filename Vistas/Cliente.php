@@ -20,6 +20,11 @@
         </div>
       </li>
     </ul>
+    <ul class="navbar-nav">
+      <li class="nav-item  float-right">
+        <a class="nav-link active" href="../Usuario/LogOut">LogOut<span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
   </div>
 </nav>
 <?php  

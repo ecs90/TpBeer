@@ -79,5 +79,10 @@ class UsuarioControlador {
     public function menuclient(){
         require_once 'Vistas/Cliente.php';
     }
+
+    public function logOut(){
+        unset($_SESSION['USUARIO-LOGUEADO']);
+        header("Location: ../Login/index");
+    }
 }
 ?>

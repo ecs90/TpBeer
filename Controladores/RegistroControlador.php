@@ -5,7 +5,7 @@ use Modelos;
 
 class RegistroControlador{
     public function altaVista(){
-        require_once 'Vistas/Registro.php';
+        require_once 'Vistas/AltaUsuario.php';
     }
 
     public function altaRegistro($nombre, $apellido, $domicilio, $telefono, $email, $user, $contra, $contrados){
