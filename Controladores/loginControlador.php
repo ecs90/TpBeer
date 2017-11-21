@@ -29,10 +29,10 @@
 
 			
 			if ($usuario->getAdmin() == 1) {
-				header("Location: ../usuario/menuadmin");
+				header("Location: ../administrador/menu");
 				return;
 			} else {
-				header("Location: ../usuario/menuclient");
+				header("Location: ../cliente/menu");
 				return;
 			}						
 		}

@@ -17,11 +17,6 @@ class SucursalControlador
         $this->datoSucursal = BDSucursal::getInstance();
     }
 
-    public function alta(){
-        require_once('Vistas/Administrador.php');
-        require_once 'Vistas/AltaSucursal.php';
-    }
-
     public function darDeAlta($direccion, $numero)
     {
         $sucursal = new Modelos\Sucursal();
@@ -30,13 +25,7 @@ class SucursalControlador
         $sucursal->setNumero($numero);
         
         $this->datoSucursal->agregar($sucursal);
-        header("Location: ../sucursal/alta");
-    }
-
-     public function listar()
-    {
-        require_once('Vistas/Administrador.php');
-        require_once('Vistas/ListarSucursales.php');    
+        header("Location: /TpBeer/administrador/altaSucursal");
     }
 
     public function getListaSucursales()
@@ -44,12 +33,9 @@ class SucursalControlador
         return $this->datoSucursal->getLista();
     }
 
-    public function modificar($idSucursal)
+    public function buscarSucursal($idSucursal)
     {
-        $sucursal = $this->datoSucursal->buscar($idSucursal);
-        $GLOBALS['sucursal'] = $sucursal;
-        require_once('Vistas/Administrador.php');
-        require_once 'Vistas/ModificarSucursales.php';  
+        return $this->datoSucursal->buscar($idSucursal);
     }
 
     public function guardarCambios($idSucursal, $parametros)
@@ -58,13 +44,13 @@ class SucursalControlador
         $parametros = $request->getParametros();   
         $idSucursal = $parametros['id'];
         $this->datoSucursal->modificar($idSucursal, $parametros);    
-        header("Location: ../sucursal/listar");
+        header("Location: /TpBeer/administrador/listarSucursales");
     }
 
     public function baja($id)
     {   
         $this->datoSucursal->eliminar($id);
-        header("Location: ../../sucursal/listar");    
+        header("Location: /TpBeer/administrador/listarSucursales");   
     }
 }
 ?>

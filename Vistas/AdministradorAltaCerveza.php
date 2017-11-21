@@ -5,7 +5,7 @@
 	<div class="trans text-center">
 		<h5 class="display-6">Cargar cerveza</h5><br>
 	</div>
-	<form action="/TpBeer/Cerveza/darDeAlta" method="post">
+	<form action="/TpBeer/Cerveza/alta" method="post">
 		<div class="form-group row">
 			<label for="nombre" class="col-sm-4 col-form-label">Nombre</label>
 			<div class="col-sm-8">

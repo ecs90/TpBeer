@@ -1,6 +1,5 @@
 <?php  
     require_once 'header.php';
-    $sucursal = $GLOBALS['sucursal'];
 ?>
 <div class="container col-sm-5 bg-dark text-white" style="margin-top: 20px; opacity: 0.9; color: black"><br>
     <div class="trans text-center">

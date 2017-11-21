@@ -18,22 +18,22 @@
 	    <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle active" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cervezas</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="/TpBeer/Cerveza/listar">Listar</a>
-          <a class="dropdown-item" href="/TpBeer/Cerveza/alta">Agregar</a>
+          <a class="dropdown-item" href="/TpBeer/administrador/listarCerveza">Listar</a>
+          <a class="dropdown-item" href="/TpBeer/administrador/altaCerveza">Agregar</a>
         </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle active" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sucursales</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="/TpBeer/Sucursal/listar">Listar</a>
-          <a class="dropdown-item" href="/TpBeer/Sucursal/alta">Agregar</a>
+          <a class="dropdown-item" href="/TpBeer/administrador/listarSucursales">Listar</a>
+          <a class="dropdown-item" href="/TpBeer/administrador/altaSucursal">Agregar</a>
         </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle active" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Envases</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="/TpBeer/Envase/listar">Listar</a>
-          <a class="dropdown-item" href="/TpBeer/Envase/alta">Agregar</a>
+          <a class="dropdown-item" href="/TpBeer/administrador/listarEnvases">Listar</a>
+          <a class="dropdown-item" href="/TpBeer/administrador/altaEnvase">Agregar</a>
         </div>
       </li>
     </ul>

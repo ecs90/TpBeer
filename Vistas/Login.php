@@ -25,11 +25,6 @@
         <input type="text" id="usuario" name="usuario" class="form-control form-control-sm" required autofocus>
         <label for="contrasenia">Contraseña</label>
         <input type="password" id="contrasenia" name="contrasenia" class="form-control form-control-sm" required><br>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Recordarme
-          </label>
-        </div>
         <button class="btn btn-sm btn-black btn-block" type="submit">Ingresar</button>
       </form><br>
       <?php

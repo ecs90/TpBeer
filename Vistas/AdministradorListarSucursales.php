@@ -6,9 +6,8 @@
             <tbody class="bg-dark" style="color: white">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Volumen</th>
-                    <th scope="col">Factor</th>
-                    <th scope="col">Descripcion</th>
+                    <th scope="col">Numero</th>
+                    <th scope="col">Dirección</th>
                     <th scope="col">
                         <div class="trans text-center">
                             Modificar
@@ -24,28 +23,25 @@
             </thead>
             <thead>
             <tbody style="color: black;">
-                <?php foreach ($this->getListaEnvases() as $envase) : ?>
+                <?php foreach ($datos->getListaSucursales() as $sucursal) : ?>
                     <tr class="table-active">
-                        <th>
-                            <?php echo $envase->getId(); ?>
+                        <th>   
+                            <?php echo $sucursal->getID(); ?>
                         </th> 
                         <th>   
-                            <?php echo $envase->getVolumen(); ?>
-                        </th> 
-                        <th>   
-                            <?php echo $envase->getFactor(); ?>
+                            <?php echo $sucursal->getNumero(); ?>
                         </th> 
                         <th>
-                            <?php echo $envase->getDescripcion(); ?>
-                        </th> 
+                            <?php echo $sucursal->getDireccion(); ?>
+                        </th>
                         <th>
                             <div class="trans text-center">
-                                <a class="btn btn-warning btn-sm" href="modificar/<?php echo $envase->getId(); ?>">Modificar</a>
+                                <a class="btn btn-warning btn-sm" href="modificarSucursal/<?php echo $sucursal->getId(); ?>">Modificar</a>
                             </div>
                         </th>
                         <th>
                             <div class="trans text-center">
-                                <a class="btn btn-danger btn-sm" href="baja/<?php echo $envase->getId(); ?>">Eliminar</a>
+                                <a class="btn btn-danger btn-sm" href="/TpBeer/Sucursal/baja/<?php echo $sucursal->getId(); ?>">Eliminar</a>
                             </div>
                         </th>
                     </tr>

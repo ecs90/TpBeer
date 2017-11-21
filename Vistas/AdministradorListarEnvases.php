@@ -1,5 +1,4 @@
-
-    <body class="InitBody"> 
+<body class="InitBody"> 
         <br><br>
         <div class="container">
         <table class="table table-sm">
@@ -7,9 +6,9 @@
             <tbody class="bg-dark" style="color: white">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Nombre</th>
+                    <th scope="col">Volumen</th>
+                    <th scope="col">Factor</th>
                     <th scope="col">Descripcion</th>
-                    <th scope="col">Precio</th>
                     <th scope="col">
                         <div class="trans text-center">
                             Modificar
@@ -25,28 +24,28 @@
             </thead>
             <thead>
             <tbody style="color: black;">
-                <?php foreach ($this->getListaCervezas() as $cerveza) : ?>
+                <?php foreach ($datos->getListaEnvases() as $envase) : ?>
                     <tr class="table-active">
-                        <th>   
-                            <?php echo $cerveza->getID(); ?>
+                        <th>
+                            <?php echo $envase->getId(); ?>
                         </th> 
                         <th>   
-                            <?php echo $cerveza->getNombre(); ?>
+                            <?php echo $envase->getVolumen(); ?>
+                        </th> 
+                        <th>   
+                            <?php echo $envase->getFactor(); ?>
                         </th> 
                         <th>
-                            <?php echo $cerveza->getDescripcion(); ?>
-                        </th> 
-                        <th>
-                            <?php echo $cerveza->getPrecio(); ?>
+                            <?php echo $envase->getDescripcion(); ?>
                         </th> 
                         <th>
                             <div class="trans text-center">
-                                <a class="btn btn-warning btn-sm" href="modificar/<?php echo $cerveza->getId(); ?>">Modificar</a>
+                                <a class="btn btn-warning btn-sm" href="modificarEnvase/<?php echo $envase->getId(); ?>">Modificar</a>
                             </div>
                         </th>
                         <th>
                             <div class="trans text-center">
-                                <a class="btn btn-danger btn-sm" href="baja/<?php echo $cerveza->getId(); ?>">Eliminar</a>
+                                <a class="btn btn-danger btn-sm" href="/TpBeer/Envase/baja/<?php echo $envase->getId(); ?>">Eliminar</a>
                             </div>
                         </th>
                     </tr>

@@ -72,14 +72,6 @@ class UsuarioControlador {
         header("Location: ../../usuario/listar");    
     }
 
-    public function menuadmin(){
-        require_once 'Vistas/Administrador.php';
-    }
-
-    public function menuclient(){
-        require_once 'Vistas/Cliente.php';
-    }
-
     public function logOut(){
         unset($_SESSION['USUARIO-LOGUEADO']);
         header("Location: ../Login/index");

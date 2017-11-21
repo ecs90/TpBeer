@@ -22,54 +22,21 @@ class CervezaControlador
 
     }
 
-	public function alta()
-	{
-        require_once('Vistas/Administrador.php');
-		require_once 'Vistas/AltaCerveza.php';	
-	}
-
-    public function darDeAlta($nombre, $descripcion, $precio,$imagen)
+    public function Alta($nombre, $descripcion, $precio,$imagen)
     {
         $cerveza = new Modelos\Cerveza();
         $cerveza->setNombre($nombre);
         $cerveza->setDescripcion($descripcion);
         $cerveza->setPrecio($precio);
-        //$cerveza->setStock($stock);
         $cerveza->setImagen($imagen);
         $this->datoCerveza->agregar($cerveza);
-        header("Location: ../cerveza/alta");
+        header("Location: ../administrador/altaCerveza");
     }
-
-    ///////////////////VERSION 2
-
-    /*public function altaCerveza(){
-        $request = new Request();
-        $parametros = $request->getParametros();
-
-
-        $nombre = $parametros['nombre'];
-        $tipo = $parametros['tipo'];
-        $precio = $parametros['precio'];
-        $stock = $parametros['stockLitros'];
-        $descripcion = $parametros['descripcion'];
-        $imagen = $parametros['imagen'];
-
-
-        $cerveza = new Modelos\Cerveza($nombre, $tipo, $precio, $stock, $descripcion, $imagen);
-
-        print_r($cerveza);
-    }*/
 
     public function baja($id)
     {   
         $this->datoCerveza->eliminar($id);
-        header("Location: /TpBeer/cerveza/listar");
-    }
-
-    public function listar()
-    {
-        require_once('Vistas/Administrador.php');
-        require_once('Vistas/ListarCervezas.php');    
+        header("Location: /TpBeer/administrador/listarCerveza");
     }
 
     public function getListaCervezas()
@@ -77,12 +44,9 @@ class CervezaControlador
         return $this->datoCerveza->getLista();
     }
 
-    public function modificar($idCerveza)
+    public function buscarCerveza($idCerveza)
     {
-        $cerveza = $this->datoCerveza->buscar($idCerveza);
-        $GLOBALS['cerveza'] = $cerveza;
-        require_once('Vistas/Administrador.php');
-        require_once 'Vistas/ModificarCervezas.php';  
+        return $this->datoCerveza->buscar($idCerveza);
     }
 
     public function guardarCambios($idCerveza, $parametros)
@@ -91,6 +55,6 @@ class CervezaControlador
         $parametros = $request->getParametros();   
         $idCerveza = $parametros['id'];
         $this->datoCerveza->modificar($idCerveza, $parametros);    
-        header("Location: ../cerveza/listar");
+        header("Location: /TpBeer/administrador/listarCerveza");
     }
 }

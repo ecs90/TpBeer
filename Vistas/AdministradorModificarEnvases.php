@@ -1,30 +1,28 @@
 <?php  
     require_once 'header.php';
-    $cerveza = $GLOBALS['cerveza']; ?>
 ?>
-
 <div class="container col-sm-5 bg-dark text-white" style="margin-top: 20px; opacity: 0.9; color: black"><br>
     <div class="trans text-center">
-        <h5 class="display-6">Modificar cerveza</h5><br>
+        <h5 class="display-6">Modificar envase</h5><br>
     </div>
-    <form action="/TpBeer/cerveza/guardarCambios" method="post">
-        <input type="hidden" name="id" value="<?php echo $cerveza->getId(); ?>" >
+    <form action="/TpBeer/Envase/guardarCambios" method="post">
+        <input type="hidden" name="id" value="<?php echo $envase->getId(); ?>" >
         <div class="form-group row">
-            <label for="nombre" class="col-sm-4 col-form-label">Nombre</label>
+            <label for="volumen" class="col-sm-4 col-form-label">Volumen</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control form-control-sm" id="nombre" name="nombre" value="<?php echo $cerveza->getNombre(); ?>">
+                <input class="form-control form-control-sm" type="number" step="0.01" value="<?php echo $envase->getVolumen(); ?>" id="volumen" name="volumen"></input>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="factor" class="col-sm-4 col-form-label">Factor</label>
+            <div class="col-sm-8">
+                <input class="form-control form-control-sm" type="number" step="0.01" value="<?php echo $envase->getFactor(); ?>" id="factor" name="factor"></input>
             </div>
         </div>
         <div class="form-group row">
             <label for="descripcion" class="col-sm-4 col-form-label">Descripcion</label>
             <div class="col-sm-8">
-                <textarea class="form-control form-control-sm" id="descripcion" name="descripcion" rows="5"><?php echo $cerveza->getDescripcion(); ?></textarea>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="precio" class="col-sm-4 col-form-label">Precio</label>
-            <div class="col-sm-8">
-                <input class="form-control form-control-sm" type="number" id="precio" name="precio" value="<?php echo $cerveza->getPrecio(); ?>"></input>
+                <textarea class="form-control form-control-sm" id="descripcion" name="descripcion" rows="5"><?php echo $envase->getDescripcion(); ?></textarea>
             </div>
         </div>
         <div class="form-group row">

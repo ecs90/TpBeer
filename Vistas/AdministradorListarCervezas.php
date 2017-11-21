@@ -1,4 +1,5 @@
-<body class="InitBody"> 
+
+    <body class="InitBody"> 
         <br><br>
         <div class="container">
         <table class="table table-sm">
@@ -6,8 +7,9 @@
             <tbody class="bg-dark" style="color: white">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Numero</th>
-                    <th scope="col">Dirección</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Precio</th>
                     <th scope="col">
                         <div class="trans text-center">
                             Modificar
@@ -23,25 +25,28 @@
             </thead>
             <thead>
             <tbody style="color: black;">
-                <?php foreach ($this->getListaSucursales() as $sucursal) : ?>
+                <?php foreach ($datos->getListaCervezas() as $cerveza) : ?>
                     <tr class="table-active">
                         <th>   
-                            <?php echo $sucursal->getID(); ?>
+                            <?php echo $cerveza->getID(); ?>
                         </th> 
                         <th>   
-                            <?php echo $sucursal->getNumero(); ?>
+                            <?php echo $cerveza->getNombre(); ?>
                         </th> 
                         <th>
-                            <?php echo $sucursal->getDireccion(); ?>
-                        </th>
+                            <?php echo $cerveza->getDescripcion(); ?>
+                        </th> 
+                        <th>
+                            <?php echo $cerveza->getPrecio(); ?>
+                        </th> 
                         <th>
                             <div class="trans text-center">
-                                <a class="btn btn-warning btn-sm" href="modificar/<?php echo $sucursal->getId(); ?>">Modificar</a>
+                                <a class="btn btn-warning btn-sm" href="modificarCerveza/<?php echo $cerveza->getId(); ?>">Modificar</a>
                             </div>
                         </th>
                         <th>
                             <div class="trans text-center">
-                                <a class="btn btn-danger btn-sm" href="baja/<?php echo $sucursal->getId(); ?>">Eliminar</a>
+                                <a class="btn btn-danger btn-sm" href="/TpBeer/Cerveza/baja/<?php echo $cerveza->getId(); ?>">Eliminar</a>
                             </div>
                         </th>
                     </tr>
