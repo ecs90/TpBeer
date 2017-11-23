@@ -36,6 +36,13 @@
           <a class="dropdown-item" href="/TpBeer/administrador/altaEnvase">Agregar</a>
         </div>
       </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle active" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Clientes</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" href="/TpBeer/administrador/listarUsuarios">Listar</a>
+          <a class="dropdown-item" href="/TpBeer/administrador/altaUsuario">Agregar</a>
+        </div>
+      </li>
     </ul>
     <ul class="navbar-nav">
       <li class="nav-item  float-right">

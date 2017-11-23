@@ -46,7 +46,7 @@ class BDUsuario extends Singleton implements IDAO
 
     public function getLista()
     {
-        $query = "SELECT * FROM usuarios;";
+        $query = "SELECT * FROM usuarios WHERE admin = 0";
 
         $connection = new Connection();
         $pdo = $connection->connect();

@@ -17,10 +17,6 @@ class UsuarioControlador {
         $this->datoUsuario = BDUsuario::getInstance();
     }
 
-    public function alta(){
-        require_once 'Vistas/AltaUsuario.php';
-    }
-
     public function darDeAlta($nombre, $apellido, $domicilio, $telefono, $email, $username, $contrasenia)
     {
         $usuario = new Modelos\Usuario();
@@ -36,13 +32,14 @@ class UsuarioControlador {
         
         $this->datoUsuario->agregar($usuario);
 
-        header("Location: /TpBeer/login/index");
-    }
+        $dato = new LoginControlador();
+        $usuario = $dato->getUsuarioLogueado();
 
-
-    public function listar()
-    {
-        require_once('Vistas/ListarUsuarios.php');    
+        if ($usuario != null && $usuario->getAdmin() == 1) {
+                header("Location: /TpBeer/administrador/altaUsuario");
+            } else {
+                header("Location: /TpBeer/login/index");
+            }
     }
 
     public function getListaUsuarios()
@@ -50,11 +47,9 @@ class UsuarioControlador {
         return $this->datoUsuario->getLista();
     }
 
-    public function modificar($idUsuario)
+    public function buscarUsuario($idUsuario)
     {
-        $usuario = $this->datoUsuario->buscar($idUsuario);
-        $GLOBALS['usuario'] = $usuario;
-        require_once 'Vistas/ModificarUsuarios.php';  
+        return $this->datoUsuario->buscar($idUsuario);;
     }
 
     public function guardarCambios($idUsuario, $parametros)
@@ -63,13 +58,13 @@ class UsuarioControlador {
         $parametros = $request->getParametros();   
         $idUsuario = $parametros['id'];
         $this->datoUsuario->modificar($idUsuario, $parametros);    
-        header("Location: ../usuario/listar");
+        header("Location: /TpBeer/administrador/listarUsuarios");
     }
 
     public function baja($id)
     {   
         $this->datoUsuario->eliminar($id);
-        header("Location: ../../usuario/listar");    
+        header("Location: /TpBeer/administrador/listarUsuarios");    
     }
 
     public function logOut(){

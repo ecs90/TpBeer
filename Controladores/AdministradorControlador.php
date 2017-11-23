@@ -81,6 +81,29 @@ class AdministradorControlador
         require_once 'Vistas/AdministradorModificarSucursales.php';  
     }
 
+    ///////////USUARIOS////////////////
+
+    public function listarUsuarios()
+    {
+        $datos = new Controladores\UsuarioControlador();
+        require_once('Vistas/Administrador.php');
+        require_once('Vistas/AdministradorListarUsuarios.php');    
+    }
+
+    public function altaUsuario()
+    {
+        require_once 'Vistas/Administrador.php';
+        require_once 'Vistas/AdministradorAltaUsuario.php';  
+    }
+
+    public function modificarUsuario($idUsuario)
+    {
+        $datos = new Controladores\UsuarioControlador();
+        $usuarioM = $datos->buscarUsuario($idUsuario);
+        require_once('Vistas/Administrador.php');
+        require_once 'Vistas/AdministradorModificarUsuarios.php';  
+    }
+
 }
 
 ?>
