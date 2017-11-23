@@ -29,7 +29,6 @@ class BDUsuario extends Singleton implements IDAO
         $email = $usuario->getEmail();
         $username = $usuario->getUsername();
         $password = $usuario->getContrasenia();
-        var_dump($usuario);
 
         $command->bindParam(':nombre', $nombre);
         $command->bindParam(':apellido', $apellido);

@@ -35,8 +35,8 @@ class UsuarioControlador {
 
         
         $this->datoUsuario->agregar($usuario);
-        
-        header("Location: ../usuario/alta");
+
+        header("Location: /TpBeer/login/index");
     }
 
 
