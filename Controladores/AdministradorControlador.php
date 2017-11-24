@@ -33,6 +33,8 @@ class AdministradorControlador
     {
         $datos = new Controladores\CervezaControlador();
         $cerveza = $datos->buscarCerveza($idCerveza);
+        $datosEnvases = new Controladores\EnvaseControlador();
+        $envases = $datosEnvases->getListaEnvases();
         require_once('Vistas/Administrador.php');
         require_once 'Vistas/AdministradorModificarCervezas.php';  
     }

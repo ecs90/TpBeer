@@ -27,6 +27,19 @@
             </div>
         </div>
         <div class="form-group row">
+            <label for="precio" class="col-sm-4 col-form-label">Envases</label>
+            <div class="col-sm-8">
+                <?php foreach ($envases as $envase) : ?>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" name="envases[]" value="<?php echo $envase->getId(); ?>">
+                            <?php echo $envase->getDescripcion(); ?>
+                        </label>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <div class="form-group row">
             <label for="imagen" class="col-sm-4 col-form-label">Imagen</label>
             <div class="col-sm-8">
                 <input class="form-control form-control-sm" type="file" id="imagen" name="imagen"></input>

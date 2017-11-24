@@ -10,6 +10,7 @@
                     <th scope="col">Nombre</th>
                     <th scope="col">Descripcion</th>
                     <th scope="col">Precio</th>
+                    <th scope="col">Envases</th>
                     <th scope="col">
                         <div class="trans text-center">
                             Modificar
@@ -38,6 +39,13 @@
                         </th> 
                         <th>
                             <?php echo $cerveza->getPrecio(); ?>
+                        </th> 
+                        <th>
+                            <ul>
+                                <?php foreach ($cerveza->getEnvases() as $envase) :?>
+                                    <li><?php echo $envase->getDescripcion() ?></li>
+                                <?php endforeach; ?>
+                            </ul>
                         </th> 
                         <th>
                             <div class="trans text-center">

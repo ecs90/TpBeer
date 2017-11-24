@@ -117,6 +117,19 @@ class BDCerveza extends Singleton implements IDAO
         $command->bindParam(':precio', $precio);
         
         $command->execute();
+
+        $envases = $parametros['envases'];
+        $envasesC = array();
+
+        foreach ($envases as $envase) {
+            $datos = new Controladores\EnvaseControlador();
+            $dato = $datos->buscarEnvase($envase);
+            array_push($envasesC, $dato);
+        }
+
+        $this->eliminarEnvases($id);
+        $this->agregarEnvases($id, $envasesC);
+
     }
 
     //////////ENVASESXCERVEZAS///////////////
