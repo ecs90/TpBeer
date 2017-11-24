@@ -73,3 +73,19 @@ CREATE TABLE `tpbeer`.`linea_pedidos` (
   CONSTRAINT `fk_envase` FOREIGN KEY (`id_envase`) REFERENCES `tpbeer`.`envases` (`id`),
   CONSTRAINT `fk_pedido` FOREIGN KEY (`id_pedido`) REFERENCES `tpbeer`.`pedidos` (`id`)
 );
+
+CREATE TABLE `tpbeer`.`envasesxcervezas` (
+  `id_cerveza` INT UNSIGNED NOT NULL,
+  `id_envase` INT UNSIGNED NOT NULL,
+  INDEX `fk_cerveza_idx` (`id_cerveza` ASC),
+  INDEX `fk_envase_idx` (`id_envase` ASC),
+  CONSTRAINT `fk_cerveza`
+    FOREIGN KEY (`id_cerveza`)
+    REFERENCES `tpbeer`.`cervezas` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_envase`
+    FOREIGN KEY (`id_envase`)
+    REFERENCES `tpbeer`.`envases` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);

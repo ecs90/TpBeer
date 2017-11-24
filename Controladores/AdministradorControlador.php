@@ -23,6 +23,8 @@ class AdministradorControlador
 
     public function altaCerveza()
     {
+        $datos = new Controladores\EnvaseControlador();
+        $envases = $datos->getListaEnvases();
         require_once 'Vistas/Administrador.php';
         require_once 'Vistas/AdministradorAltaCerveza.php';  
     }

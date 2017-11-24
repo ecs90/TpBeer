@@ -4,6 +4,7 @@ namespace Controladores;
 
 use Config\Request;
 use Modelos;
+use Controladores;
 use DAOs\DAOCerveza;
 use DAOs\BDCerveza;
 use Vistas;
@@ -22,15 +23,22 @@ class CervezaControlador
 
     }
 
-    public function Alta($nombre, $descripcion, $precio,$imagen)
+    public function Alta($nombre, $descripcion, $precio, $envases, $imagen)
     {
         $cerveza = new Modelos\Cerveza();
         $cerveza->setNombre($nombre);
         $cerveza->setDescripcion($descripcion);
         $cerveza->setPrecio($precio);
         $cerveza->setImagen($imagen);
+        $envasesC = array();
+        foreach ($envases as $envase) {
+            $datos = new Controladores\EnvaseControlador();
+            $dato = $datos->buscarEnvase($envase);
+            array_push($envasesC, $dato);
+        }
+        $cerveza->setEnvases($envasesC);
         $this->datoCerveza->agregar($cerveza);
-        header("Location: ../administrador/altaCerveza");
+        header("Location: /TpBeer/administrador/altaCerveza");
     }
 
     public function baja($id)

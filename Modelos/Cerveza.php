@@ -6,15 +6,11 @@
 		private $descripcion;
 		private $imagen;
 		private $precio;
-		//private $stock;
 		private $id;
+		private $envases;
 
-		public function __construct($nombre="", $descripcion="", $precio="", /*$stock="",*/ $imagen=""){
-			$this->nombre = $nombre;
-			$this->descripcion = $descripcion;
-			$this->precio = $precio;
-			//$this->stock = $stock;
-			$this->imagen = $imagen;
+		public function __construct(){
+			$this->envases = array();
 		}
 
 		public function setNombre($nombre){
@@ -49,14 +45,6 @@
 			return $this->precio;
 		}
 
-		/*public function setStock ($stock){
-			$this->stock = $stock;
-		}
-		
-		public function getStock(){
-			return $this->stock;
-		}*/
-
 		public function setId($id){
 			$this->id = $id;
 		}
@@ -64,5 +52,13 @@
 		public function getId(){
 			return $this->id;
 		}
+
+		public function setEnvases($envases){
+        	$this->envases = $envases;
+	    }
+
+	    public function getEnvases(){
+	        return $this->envases;
+	    }
 	}
 ?>
