@@ -1,8 +1,8 @@
-<?php namespace Vistas; 
-  require_once 'header.php';
+<?php 
   use Modelos\Usuario;
   use Controladores\LoginControlador;
   $usuario = LoginControlador::getUsuarioLogueado();
+  require_once 'header.php';
 ?>
 <body class="InitBody bg-img-adm">
 <div class="container-fluid admin-header">

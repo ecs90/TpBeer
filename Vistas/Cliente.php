@@ -1,4 +1,7 @@
-<?php namespace Vistas; 
+<?php
+  use Modelos\Usuario;
+  use Controladores\LoginControlador;
+  $usuario = LoginControlador::getUsuarioLogueado(); 
   require_once 'header.php';
 ?>
 <body class="InitBody bg-img-adm">
@@ -6,7 +9,7 @@
   <h1 class="display-4">Usuario</h1><br>
 </div>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-	<a class="navbar-brand" href="#">User</a>
+	<a class="navbar-brand" href="#"><?php echo $usuario->getUsername();  ?></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
   <span class="navbar-toggler-icon"></span>
   </button>
