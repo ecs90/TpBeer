@@ -7,13 +7,13 @@ use Config\Connection;
 
 use Modelos;
 
-class BDPedido extends Singleton implements IDAO 
+class BDPedido extends Singleton 
 {
     public function agregar($pedido)
     {
         $query = "
             INSERT INTO pedidos(
-                fecha_pedido,
+                id_usuario,
                 fecha_entrega,
                 estado,
                 horario,
@@ -22,7 +22,7 @@ class BDPedido extends Singleton implements IDAO
                 monto_final
             )
             VALUES (
-                :fecha_pedido,
+                :id_usuario,
                 :fecha_entrega,
                 :estado,
                 :horario,
@@ -38,7 +38,7 @@ class BDPedido extends Singleton implements IDAO
         
         $command = $pdo->prepare($query);
 
-        $fecha_pedido = $pedido->getFechaPedido();
+        $id_usuario = ($pedido->getUsuario())->getId();
         $fecha_entrega = $pedido->getFechaEntrega();
         $estado = $pedido->getEstado();
         $horario = $pedido->getHorario();
@@ -47,7 +47,7 @@ class BDPedido extends Singleton implements IDAO
         $monto_final = $pedido->getMontoFinal();
 
 
-        $command->bindParam(':fecha_pedido', $fecha_pedido);
+        $command->bindParam(':id_usuario', $id_usuario);
         $command->bindParam(':fecha_entrega', $fecha_entrega);
         $command->bindParam(':estado', $estado);
         $command->bindParam(':horario', $horario);
@@ -57,10 +57,12 @@ class BDPedido extends Singleton implements IDAO
         
         $command->execute();
 
-        $id = $pdo->lastInsertId();
-        $pedido->setId($id);
+        $id_pedido = $pdo->lastInsertId();
 
-        return $id;
+        foreach($pedido->getLineaPedido() as $linea) {
+            $linea->setIdPedido($id_pedido);
+            $this->agregarLinea($linea);
+        }
     }
 
     public function getLista()
@@ -131,39 +133,41 @@ class BDPedido extends Singleton implements IDAO
         return $pedido;
     }
 
-    public function modificar($id, $parametros){
-        $query = "
-            UPDATE pedidos
-            SET fecha_pedido = :fecha_pedido, 
-                fecha_entrega = :fecha_entrega,
-                estado = :estado,
-                horario = :horario,
-                tipo_entrega = :tipo_entrega,
-                id_sucursal = :id_sucursal,
-                monto_final = :monto_final
-            WHERE id = :id;";
+    //////////////////LINEASPEDIDO////////////////////////
 
+    public function agregarLinea($lineaPedido)
+    {
+        $query = "
+            INSERT INTO linea_pedidos(
+                id_cerveza,
+                id_envase,
+                cantidad,
+                precio,
+                id_pedido)
+            VALUES (
+                :id_cerveza, 
+                :id_envase, 
+                :cantidad,
+                :precio, 
+                :id_pedido)
+        ";
 
         $connection = new Connection();
         $pdo = $connection->connect();
+        
         $command = $pdo->prepare($query);
 
-        $fecha_pedido = $parametros['fecha_pedido'];
-        $fecha_entrega = $parametros['fecha_entrega'];
-        $estado = $parametros['estado'];
-        $horario = $parametros['horario'];
-        $tipo_entrega = $parametros['tipo_entrega'];
-        $id_sucursal = $parametros['id_sucursal'];
-        $monto_final = $parametros['monto_final'];
-
-        $command->bindParam(':fecha_pedido', $fecha_pedido);
-        $command->bindParam(':fecha_entrega', $fecha_entrega);
-        $command->bindParam(':estado', $estado);
-        $command->bindParam(':horario', $horario);
-        $command->bindParam(':tipo_entrega', $tipo_entrega);
-        $command->bindParam(':id_sucursal', $id_sucursal);
-        $command->bindParam(':monto_final', $monto_final);
+        $id_cerveza = $lineaPedido->getCerveza()->getId();
+        $id_envase = $lineaPedido->getEnvase()->getId();
+        $cantidad = $lineaPedido->getCantidad();
+        $precio = $lineaPedido->getPrecio();
+        $id_pedido = $lineaPedido->getIdPedido();
         
+        $command->bindParam(':id_cerveza', $id_cerveza);
+        $command->bindParam(':id_envase', $id_envase);
+        $command->bindParam(':cantidad', $cantidad);
+        $command->bindParam(':precio', $precio);
+        $command->bindParam(':id_pedido', $id_pedido);
         $command->execute();
     }
 }

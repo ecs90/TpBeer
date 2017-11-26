@@ -57,6 +57,20 @@ CREATE TABLE `tpbeer`.`pedidos` (
   CONSTRAINT `fk_sucursal` FOREIGN KEY (`id_sucursal`) REFERENCES `tpbeer`.`sucursales` (`id`)
 );
 
+ALTER TABLE `tpbeer`.`pedidos` 
+ADD COLUMN `id_usuario` INT UNSIGNED NOT NULL AFTER `id`,
+ADD INDEX `fk_usuario_idx` (`id_usuario` ASC);
+ALTER TABLE `tpbeer`.`pedidos` 
+ADD CONSTRAINT `fk_usuario`
+  FOREIGN KEY (`id_usuario`)
+  REFERENCES `tpbeer`.`usuarios` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+ALTER TABLE `tpbeer`.`pedidos` 
+DROP COLUMN `fecha_pedido`;
+
+
 CREATE TABLE `tpbeer`.`linea_pedidos` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `id_cerveza` INT UNSIGNED NOT NULL,

@@ -14,7 +14,7 @@ class AdministradorControlador
 
     ///////////CERVEZAS////////////////
 
-        public function listarCerveza()
+    public function listarCerveza()
     {
         $datos = new Controladores\CervezaControlador();
         require_once('Vistas/Administrador.php');

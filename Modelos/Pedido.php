@@ -2,8 +2,10 @@
 
 class Pedido{
 
-	const ESTADO_PENDIENTE = 0;
-	const ESTADO_ENTREGADO = 1;
+	const ESTADO_SOLICITADO = 0;
+	const ESTADO_PROCESO = 1;
+	const ESTADO_ENVIADO = 2;
+	const ESTADO_FINALIZADO = 3;
 	
 	const HORARIO_MANIANA = 0;
 	const HORARIO_TARDE = 1;
@@ -12,13 +14,18 @@ class Pedido{
 	const ENTREGA_DOMICILIO = 1;
 
 	private $id;
-	private $fecha_pedido;
+	private $usuario;
 	private $fecha_entrega;
 	private $estado;
 	private $horario;
 	private $tipo_entrega;
 	private $sucursal;
+	private $lineasPedido;
 	private $monto_final;
+
+	public function __construct(){
+		$this->lineasPedido = array();
+	}
 
 	public function setId($id){
 		$this->id = $id;
@@ -28,12 +35,12 @@ class Pedido{
 		return $this->id;
 	}
 
-	public function setFechaPedido($fecha_pedido){
-		$this->fecha_pedido = $fecha_pedido;
+	public function setUsuario($usuario){
+		$this->usuario = $usuario;
 	}
 
-	public function getFechaPedido(){
-		return $this->fecha_pedido;
+	public function getUsuario(){
+		return $this->usuario;
 	}
 
 	public function setFechaEntrega($fecha_entrega){
@@ -83,4 +90,13 @@ class Pedido{
 	public function getMontoFinal(){
 		return $this->monto_final;
 	}
+
+	public function setLineaPedido($linea){
+		array_push($this->lineasPedido, $linea);
+	}
+
+	public function getLineaPedido(){
+		return $this->lineasPedido;
+	}
+
 }

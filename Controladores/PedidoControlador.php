@@ -1,4 +1,6 @@
-<?php namespace Controladores;
+<?php 
+
+namespace Controladores;
 
 use Config\Request;
 use Modelos;
@@ -15,45 +17,56 @@ use Vistas;
 class PedidoControlador {
 
     private $datoPedido;
-    private $datoLineaPedido;
 
     public function __construct()
     {
         $this->datoPedido = BDPedido::getInstance();
-        $this->datoLineaPedido = BDLineaPedido::getInstance();
     }
 
-    public function alta(){
-        require_once('Vistas/Cliente.php');
-        require_once 'Vistas/AltaLineaPedido.php';
+    public function agregarLinea($cerveza, $envase, $precio, $cantidad){
+        $pedido = $_SESSION['PEDIDO'];
+        $linea = new Modelos\LineaPedido();
+        $datosCerveza = new Controladores\CervezaControlador();
+        $datosEnvase = new Controladores\EnvaseControlador();
+        $linea->setCerveza($datosCerveza->buscarCerveza($cerveza));
+        $linea->setEnvase($datosEnvase->buscarEnvase($envase));
+        $linea->setPrecio($precio*$cantidad);
+        $linea->setCantidad($cantidad);
+        $pedido->setLineaPedido($linea);
+        $montoParcial = 0;
+        foreach ($pedido->getLineaPedido() as $lineaP) {
+            $montoParcial = $montoParcial + $lineaP->getPrecio();
+        }
+        $pedido->setMontoFinal($montoParcial);
+        header("Location: /TpBeer/cliente/listarCerveza" . $id_pedido);
     }
 
-    public function finalizar($monto_final, $fecha_entrega, $tipo_entrega, $horario){
+    public function finalizarPedido($fecha_entrega, $tipo_entrega, $id_sucursal, $horario){
 
         $fecha_pedido = date('Y-m-d');
 
-        $pedido = new Modelos\Pedido();
-        
-        $pedido->setFechaPedido($fecha_pedido);
+        $pedido = $_SESSION['PEDIDO'];
         $pedido->setFechaEntrega($fecha_entrega);
-        $pedido->setEstado(Modelos\Pedido::ESTADO_PENDIENTE);
+        $pedido->setEstado(Modelos\Pedido::ESTADO_SOLICITADO);
         $pedido->setHorario($horario);
         $pedido->setTipoEntrega($tipo_entrega);
-        $pedido->setSucursal(null);
-        $pedido->setMontoFinal($monto_final);
+        $pedido->setSucursal($id_sucursal);
 
-        $id_pedido = BDPedido::getInstance()->agregar($pedido);
-
-        foreach($this->getCarrito() as $lineaPedido) {
-            $lineaPedido->setIdPedido($id_pedido);
-            BDLineaPedido::getInstance()->agregar($lineaPedido);
-        }
+        $this->datoPedido->agregar($pedido);
 
         $this->vaciarCarrito();
 
-        header("Location: ../pedido/ticket/" . $id_pedido); 
+        header("Location: /TpBeer/cliente/menu"); 
     }
 
+    protected function vaciarCarrito(){
+        $pedido = new Modelos\Pedido();
+        $cliente = $_SESSION['USUARIO-LOGUEADO'];
+        $pedido->setUsuario($cliente);
+        $_SESSION['PEDIDO'] = $pedido;
+    }
+
+    /*
     public function ticket($id_pedido) {
         $GLOBALS['pedido'] = $this->datoPedido->buscar($id_pedido);
         $GLOBALS['lineasPedido'] = $this->datoLineaPedido->getListaPorPedido($id_pedido);
@@ -137,7 +150,5 @@ class PedidoControlador {
         return null;
     }
 
-    protected function vaciarCarrito(){
-        $_SESSION['CARRITO'] = array();
-    }
+    */
 }
