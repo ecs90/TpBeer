@@ -97,6 +97,29 @@ class BDCerveza extends Singleton implements IDAO
         return $cerveza;
     }
 
+    public function buscarXnombre($nombre){
+
+        $query = "SELECT * FROM cervezas WHERE nombre = :nombre;";
+
+        $connection = new Connection();
+        $pdo = $connection->connect();
+        $command = $pdo->prepare($query);
+
+        $command->bindParam(':nombre', $nombre);
+        $command->execute();
+
+        $row = $command->fetch();
+
+        $cerveza = new Modelos\Cerveza();
+        $cerveza->setId($row['id']);
+        $cerveza->setNombre($row['nombre']);
+        $cerveza->setDescripcion($row['descripcion']);
+        $cerveza->setPrecio($row['precio']);
+        $cerveza->setEnvases($this->listarEnvases($cerveza->getId()));
+
+        return $cerveza;
+    }
+
     public function modificar($id, $parametros){
         $query = "
             UPDATE cervezas

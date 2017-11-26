@@ -18,12 +18,26 @@ class EnvaseControlador {
 
     public function darDeAlta($volumen, $factor, $descripcion)
     {
-        $envase = new Modelos\Envase();
-        $envase->setVolumen($volumen);
-        $envase->setFactor($factor);
-        $envase->setDescripcion($descripcion);
-        $this->datoEnvase->agregar($envase);
-        header("Location: /TpBeer/administrador/altaEnvase");
+        $this->datoEnvase = BDEnvase::getInstance();   
+
+        $env = $this->datoEnvase->buscarXdescripcion($descripcion);
+
+
+        try{
+                if ($env->getDescripcion() == $descripcion) {
+                    throw new \Exception('Esa envase ya existe');
+                }else {
+                    $envase = new Modelos\Envase();
+                    $envase->setVolumen($volumen);
+                    $envase->setFactor($factor);
+                    $envase->setDescripcion($descripcion);
+                    $this->datoEnvase->agregar($envase);
+                    header("Location: /TpBeer/administrador/altaEnvase");
+                }
+            } catch (\Exception $exception) {
+                echo '<script> alert("'.$exception->getMessage().'"); </script>';
+                require_once "Vistas/Administrador.php";
+            }
     }
 
     public function getListaEnvases()

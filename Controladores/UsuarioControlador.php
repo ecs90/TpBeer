@@ -17,29 +17,48 @@ class UsuarioControlador {
         $this->datoUsuario = BDUsuario::getInstance();
     }
 
-    public function darDeAlta($nombre, $apellido, $domicilio, $telefono, $email, $username, $contrasenia)
+    public function darDeAlta($nombre, $apellido, $domicilio, $telefono, $email, $username, $contrasenia1, $contrasenia2)
     {
-        $usuario = new Modelos\Usuario();
-
-        $usuario->setNombre($nombre);
-        $usuario->setApellido($apellido);
-        $usuario->setDomicilio($domicilio);
-        $usuario->setTelefono($telefono);
-        $usuario->setEmail($email);
-        $usuario->setUsername($username);
-        $usuario->setContrasenia($contrasenia);
-
-        
-        $this->datoUsuario->agregar($usuario);
-
         $dato = new LoginControlador();
-        $usuario = $dato->getUsuarioLogueado();
+        $usuarioLogueado = $dato->getUsuarioLogueado();
 
-        if ($usuario != null && $usuario->getAdmin() == 1) {
-                header("Location: /TpBeer/administrador/altaUsuario");
-            } else {
-                header("Location: /TpBeer/login/index");
+        try {
+
+            if ($this->datoUsuario->getUsuarioPorUsername($username) !== null) {
+                throw new \Exception('El usuario '.$username.' ya existe');
             }
+            if ($contrasenia1 !== $contrasenia2) {
+                throw new \Exception('Las contrasenas no son iguales');            
+            }        
+
+            $usuario = new Modelos\Usuario();
+
+            $usuario->setNombre($nombre);
+            $usuario->setApellido($apellido);
+            $usuario->setDomicilio($domicilio);
+            $usuario->setTelefono($telefono);
+            $usuario->setEmail($email);
+            $usuario->setUsername($username);
+            $usuario->setContrasenia($contrasenia);
+
+            $this->datoUsuario->agregar($usuario);
+
+            if ($usuario != null && $usuario->getAdmin() == 1) {
+                header("Location: ../administrador/altaUsuario");
+            } else {
+                header("Location: ../login/index");
+            }
+
+        } catch (\Exception $exception) {
+            echo '<script> alert("'.$exception->getMessage().'"); </script>';
+
+            if ($usuarioLogueado != null && $usuarioLogueado->getAdmin() == 1) {
+                require_once 'Vistas/Administrador.php';
+                require_once 'Vistas/AdministradorAltaUsuario.php';
+            } else {
+                require_once "Vistas/Login.php";
+            }
+        }
     }
 
     public function getListaUsuarios()
