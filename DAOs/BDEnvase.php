@@ -116,6 +116,7 @@ class BDEnvase extends Singleton
 
         return $envase;
     }
+    
     public function modificar($id, $parametros, $foto){
         $query = "
             UPDATE envases
