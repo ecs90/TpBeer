@@ -72,7 +72,7 @@
                     
                     <?php foreach ($sucursales as $sucursal) { ?>
                         
-                    <input type="radio" name="id_sucursal" id="id_sucursal" value="<?php echo $sucursal->getId()?>" >
+                    <input type="radio" name="id_sucursal" id="id_sucursal" value="<?php echo $sucursal->getId()?>" checked="checked">
                     <label for="sucursal"><?php echo $sucursal->getDireccion(). $sucursal->getNumero(); ?></label>
                     <?php  } ?>
                     

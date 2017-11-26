@@ -1,16 +1,11 @@
-<?php namespace Modelos;
+<?php 
+
+namespace Modelos;
 
 class Sucursal{
     private $direccion;
     private $numero;
     private $id;
-
-
-    //NO SE SI VOY A DEJAR EL CONSTRUCTOR
-    /*public function __construct($direccion, $numero){
-        $this->direccion= $direccion;
-        $this->numero= $numero;
-    }*/
 
     public function setDireccion($direccion){
         $this->direccion= $direccion;
@@ -34,6 +29,11 @@ class Sucursal{
 
     public function getId(){
         return $this->id;
+    }
+
+    public function getDireccionCompleta(){
+        $direccionCompleta = $this->direccion . " " . $this->numero;
+        return $direccionCompleta;
     }
     
 }
