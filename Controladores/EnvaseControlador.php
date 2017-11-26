@@ -16,12 +16,38 @@ class EnvaseControlador {
         $this->datoEnvase = BDEnvase::getInstance();
     }
 
+    public function MoverImagen(){
+        $imageDirectory = 'images/';
+
+        if(!file_exists($imageDirectory)){
+
+            mkdir($imageDirectory);
+        }
+        
+
+        if($_FILES){
+            
+            if((isset($_FILES['imagen'])) && ($_FILES['imagen']['name'] != '')){
+                
+                $file = $imageDirectory . basename($_FILES['imagen']['name']);
+                
+                if(!file_exists($file)){
+                    
+                    move_uploaded_file($_FILES["imagen"]["tmp_name"], $file);
+                }
+
+                return $file;
+            }
+        }
+    }
+
     public function darDeAlta($volumen, $factor, $descripcion)
     {
         $envase = new Modelos\Envase();
         $envase->setVolumen($volumen);
         $envase->setFactor($factor);
         $envase->setDescripcion($descripcion);
+        $envase->setImagen($this->MoverImagen());
         $this->datoEnvase->agregar($envase);
         header("Location: /TpBeer/administrador/altaEnvase");
     }
@@ -41,7 +67,8 @@ class EnvaseControlador {
         $request = new Request();
         $parametros = $request->getParametros();   
         $idEnvase = $parametros['id'];
-        $this->datoEnvase->modificar($idEnvase, $parametros);    
+        $archi = $this->MoverImagen();
+        $this->datoEnvase->modificar($idEnvase, $parametros, $archi);    
         header("Location: /TpBeer/administrador/listarEnvases");
     }
 

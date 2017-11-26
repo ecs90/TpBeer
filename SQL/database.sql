@@ -7,6 +7,7 @@ CREATE TABLE `tpbeer`.`cervezas` (
   `nombre` VARCHAR(100) NOT NULL,
   `descripcion` MEDIUMTEXT NULL,
   `precio` FLOAT NOT NULL,
+  `imagen` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC)
 );
@@ -16,6 +17,7 @@ CREATE TABLE `tpbeer`.`envases` (
   `volumen` FLOAT NOT NULL,
   `factor` FLOAT NOT NULL,
   `descripcion` MEDIUMTEXT NULL,
+  `imagen` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC)
 );
@@ -93,12 +95,12 @@ CREATE TABLE `tpbeer`.`envasesxcervezas` (
   `id_envase` INT UNSIGNED NOT NULL,
   INDEX `fk_cerveza_idx` (`id_cerveza` ASC),
   INDEX `fk_envase_idx` (`id_envase` ASC),
-  CONSTRAINT `fk_cerveza`
+  CONSTRAINT `fk_cervezaa`
     FOREIGN KEY (`id_cerveza`)
     REFERENCES `tpbeer`.`cervezas` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_envase`
+  CONSTRAINT `fk_envasee`
     FOREIGN KEY (`id_envase`)
     REFERENCES `tpbeer`.`envases` (`id`)
     ON DELETE NO ACTION

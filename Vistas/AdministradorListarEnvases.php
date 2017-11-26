@@ -9,6 +9,7 @@
                     <th scope="col">Volumen</th>
                     <th scope="col">Factor</th>
                     <th scope="col">Descripcion</th>
+                    <th scope="col">Imagen</th>
                     <th scope="col">
                         <div class="trans text-center">
                             Modificar
@@ -37,6 +38,9 @@
                         </th> 
                         <th>
                             <?php echo $envase->getDescripcion(); ?>
+                        </th>
+                        <th>
+                            <img src="../<?php echo $envase->getImagen(); ?>" style="height:40px; width: 40px; ">
                         </th> 
                         <th>
                             <div class="trans text-center">

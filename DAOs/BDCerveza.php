@@ -7,13 +7,13 @@ use Config\Connection;
 use Controladores;
 use Modelos;
 
-class BDCerveza extends Singleton implements IDAO 
+class BDCerveza extends Singleton 
 {
     public function agregar($cerveza)
     {
         $query = "
-            INSERT INTO cervezas(nombre, descripcion, precio)
-            VALUES (:nombre, :descripcion, :precio);
+            INSERT INTO cervezas(nombre, descripcion, precio, imagen)
+            VALUES (:nombre, :descripcion, :precio, :imagen);
         ";
 
         $connection = new Connection();
@@ -24,10 +24,12 @@ class BDCerveza extends Singleton implements IDAO
         $nombre = $cerveza->getNombre();
         $descripcion = $cerveza->getDescripcion();
         $precio = $cerveza->getPrecio();
+        $imagen = $cerveza->getImagen();
 
         $command->bindParam(':nombre', $nombre);
         $command->bindParam(':descripcion', $descripcion);
         $command->bindParam(':precio', $precio);
+        $command->bindParam(':imagen', $imagen);
         
         $command->execute();
 
@@ -52,6 +54,7 @@ class BDCerveza extends Singleton implements IDAO
             $cerveza->setDescripcion($row['descripcion']);
             $cerveza->setPrecio($row['precio']);
             $cerveza->setEnvases($this->listarEnvases($cerveza->getId()));
+            $cerveza->setImagen($row['imagen']);
 
             array_push($lista, $cerveza);
         }
@@ -93,14 +96,15 @@ class BDCerveza extends Singleton implements IDAO
         $cerveza->setDescripcion($row['descripcion']);
         $cerveza->setPrecio($row['precio']);
         $cerveza->setEnvases($this->listarEnvases($cerveza->getId()));
+        $cerveza->setImagen($row['imagen']);
 
         return $cerveza;
     }
 
-    public function modificar($id, $parametros){
+    public function modificar($id, $parametros, $foto){
         $query = "
             UPDATE cervezas
-            SET nombre = :nombre, descripcion = :descripcion, precio = :precio
+            SET nombre = :nombre, descripcion = :descripcion, precio = :precio, imagen = :imagen
             WHERE id = :id;";
 
         $connection = new Connection();
@@ -115,6 +119,7 @@ class BDCerveza extends Singleton implements IDAO
         $command->bindParam(':nombre', $nombre);
         $command->bindParam(':descripcion', $descripcion);
         $command->bindParam(':precio', $precio);
+        $command->bindParam(':imagen', $foto);
         
         $command->execute();
 

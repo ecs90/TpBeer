@@ -7,7 +7,7 @@ use Config\Connection;
 
 use Modelos;
 
-class BDLineaPedido extends Singleton implements IDAO 
+class BDLineaPedido extends Singleton
 {
     public function agregar($lineaPedido)
     {

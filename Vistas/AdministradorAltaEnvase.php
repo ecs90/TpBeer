@@ -5,7 +5,7 @@
     <div class="trans text-center">
         <h5 class="display-6">Cargar envase</h5><br>
     </div>
-    <form action="/TpBeer/Envase/darDeAlta" method="post">
+    <form action="/TpBeer/Envase/darDeAlta" method="post" enctype="multipart/form-data">
         <div class="form-group row">
             <label for="volumen" class="col-sm-4 col-form-label">Volumen</label>
             <div class="col-sm-8">
@@ -27,7 +27,7 @@
         <div class="form-group row">
             <label for="imagen" class="col-sm-4 col-form-label">Imagen</label>
             <div class="col-sm-8">
-                <input class="form-control form-control-sm" type="file" id="imagen" name="imagen"></input>
+                <input class="form-control form-control-sm" type="file" id="imagen" name="imagen" accept=".jpg, .jpeg, .png"></input>
             </div>
         </div><br>
         <div class="trans text-center">

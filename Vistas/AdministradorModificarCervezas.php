@@ -6,7 +6,7 @@
     <div class="trans text-center">
         <h5 class="display-6">Modificar cerveza</h5><br>
     </div>
-    <form action="/TpBeer/cerveza/guardarCambios" method="post">
+    <form action="/TpBeer/cerveza/guardarCambios" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $cerveza->getId(); ?>" >
         <div class="form-group row">
             <label for="nombre" class="col-sm-4 col-form-label">Nombre</label>
@@ -42,7 +42,7 @@
         <div class="form-group row">
             <label for="imagen" class="col-sm-4 col-form-label">Imagen</label>
             <div class="col-sm-8">
-                <input class="form-control form-control-sm" type="file" id="imagen" name="imagen"></input>
+                <input class="form-control form-control-sm" type="file" id="imagen" name="imagen" accept=".jpg, .jpeg, .png" value="<?php echo $cerveza->getImagen(); ?>"></input>
             </div>
         </div><br>
         <div class="trans text-center">
