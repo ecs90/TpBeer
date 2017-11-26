@@ -93,6 +93,12 @@ class PedidoControlador {
         header("Location: /TpBeer/cliente/menu"); 
     }
 
+    public function listarPedidos(){
+        $cliente = $_SESSION['USUARIO-LOGUEADO'];
+        $listaPedidos = $this->datoPedido->listarPedidos($cliente);
+        return $listaPedidos;
+    }
+
     protected function vaciarCarrito(){
         $pedido = new Modelos\Pedido();
         $cliente = $_SESSION['USUARIO-LOGUEADO'];
@@ -125,4 +131,6 @@ class PedidoControlador {
         $miles = $dist * 60 * 1.1515;
         return ($miles * 1.609344);
     }
+
+
 }

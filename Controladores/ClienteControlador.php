@@ -30,8 +30,11 @@ class ClienteControlador
         require_once('Vistas/ClienteCarrito.php'); 
     }
 
-    public function mostrarPedidos(){
-
+    public function listarPedidos(){
+        $datosPedido = new Controladores\PedidoControlador();
+        $listaPedidos = $datosPedido->listarPedidos(); 
+        require_once('Vistas/Cliente.php');
+        require_once('Vistas/ClienteListarPedidos.php');     
     }
 }
 
