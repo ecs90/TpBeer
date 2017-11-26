@@ -24,7 +24,7 @@ class BDEnvase extends Singleton
         $volumen = $envase->getVolumen();
         $factor = $envase->getFactor();
         $descripcion = $envase->getDescripcion();
-        $imagen = $cerveza->getImagen();
+        $imagen = $envase->getImagen();
 
         $command->bindParam(':volumen', $volumen);
         $command->bindParam(':factor', $factor);
@@ -51,7 +51,7 @@ class BDEnvase extends Singleton
             $envase->setVolumen($row['volumen']);
             $envase->setFactor($row['factor']);
             $envase->setDescripcion($row['descripcion']);
-            $cerveza->setImagen($row['imagen']);
+            $envase->setImagen($row['imagen']);
 
             array_push($lista, $envase);
         }
@@ -89,7 +89,7 @@ class BDEnvase extends Singleton
         $envase->setVolumen($row['volumen']);
         $envase->setFactor($row['factor']);
         $envase->setDescripcion($row['descripcion']);
-        $cerveza->setImagen($row['imagen']);
+        $envase->setImagen($row['imagen']);
 
         return $envase;
     }
