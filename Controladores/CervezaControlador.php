@@ -23,37 +23,65 @@ class CervezaControlador
 
     }
 
-    public function Alta($nombre, $descripcion, $precio, $envases, $imagen)
+    public function MoverImagen(){
+        $imageDirectory = 'images/';
+
+        if(!file_exists($imageDirectory)){
+
+            mkdir($imageDirectory);
+        }
+        
+
+        if($_FILES){
+            
+            if((isset($_FILES['imagen'])) && ($_FILES['imagen']['name'] != '')){
+                
+                $file = $imageDirectory . basename($_FILES['imagen']['name']);
+                
+                if(!file_exists($file)){
+                    
+                    move_uploaded_file($_FILES["imagen"]["tmp_name"], $file);
+                }
+
+                return $file;
+            }
+        }
+    }
+
+    public function Alta($nombre, $descripcion, $precio, $envases)
     {
         $this->datoCerveza = BDCerveza::getInstance();
         
         $cerve = $this->datoCerveza->buscarXnombre($nombre);
          
         try{
-                if ($cerve->getNombre() == $nombre) {
-                    throw new \Exception('Esa cerveza ya existe');
-                }else {
-                    $cerveza = new Modelos\Cerveza();
+            
+            if ($cerve->getNombre() == $nombre) {
+                throw new \Exception('Esa cerveza ya existe');
+            } else {
 
-                    $cerveza->setNombre($nombre);
-                    $cerveza->setDescripcion($descripcion);
-                    $cerveza->setPrecio($precio);
-                    $cerveza->setImagen($imagen);
-                    $envasesC = array();
-                    foreach ($envases as $envase) {
-                        $datos = new Controladores\EnvaseControlador();
-                        $dato = $datos->buscarEnvase($envase);
-                        array_push($envasesC, $dato);
-                    }
-                    $cerveza->setEnvases($envasesC);
-                    $this->datoCerveza->agregar($cerveza);
-                    header("Location: /TpBeer/administrador/altaCerveza");
+                $cerveza = new Modelos\Cerveza();
+                $cerveza->setNombre($nombre);
+                $cerveza->setDescripcion($descripcion);
+                $cerveza->setPrecio($precio);
+                
+                $cerveza->setImagen($this->MoverImagen());
+                $envasesC = array();
+                foreach ($envases as $envase) {
+                    $datos = new Controladores\EnvaseControlador();
+                    $dato = $datos->buscarEnvase($envase);
+                    array_push($envasesC, $dato);
                 }
-            } catch (\Exception $exception) {
-                echo '<script> alert("'.$exception->getMessage().'"); </script>';
-                require_once "Vistas/Administrador.php";
+                $cerveza->setEnvases($envasesC);
+                $this->datoCerveza->agregar($cerveza);
+                header("Location: /TpBeer/administrador/altaCerveza");
             }
-}
+
+        } catch (\Exception $exception) {
+            echo '<script> alert("'.$exception->getMessage().'"); </script>';
+            require_once "Vistas/Administrador.php";
+        }
+    }
 
     public function baja($id)
     {   
@@ -76,7 +104,8 @@ class CervezaControlador
         $request = new Request();
         $parametros = $request->getParametros();   
         $idCerveza = $parametros['id'];
-        $this->datoCerveza->modificar($idCerveza, $parametros);    
+        $archi = $this->MoverImagen();
+        $this->datoCerveza->modificar($idCerveza, $parametros, $archi);    
         header("Location: /TpBeer/administrador/listarCerveza");
     }
 }

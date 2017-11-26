@@ -7,13 +7,13 @@ use Config\Connection;
 
 use Modelos;
 
-class BDEnvase extends Singleton implements IDAO 
+class BDEnvase extends Singleton
 {
     public function agregar($envase)
     {
         $query = "
-            INSERT INTO envases(volumen, factor, descripcion)
-            VALUES (:volumen, :factor, :descripcion)
+            INSERT INTO envases(volumen, factor, descripcion, imagen)
+            VALUES (:volumen, :factor, :descripcion, :imagen)
         ";
 
         $connection = new Connection();
@@ -24,11 +24,12 @@ class BDEnvase extends Singleton implements IDAO
         $volumen = $envase->getVolumen();
         $factor = $envase->getFactor();
         $descripcion = $envase->getDescripcion();
-        
+        $imagen = $envase->getImagen();
 
         $command->bindParam(':volumen', $volumen);
         $command->bindParam(':factor', $factor);
         $command->bindParam(':descripcion', $descripcion);
+        $command->bindParam(':imagen', $imagen);
         
         $command->execute();
     }
@@ -50,7 +51,7 @@ class BDEnvase extends Singleton implements IDAO
             $envase->setVolumen($row['volumen']);
             $envase->setFactor($row['factor']);
             $envase->setDescripcion($row['descripcion']);
-            
+            $envase->setImagen($row['imagen']);
 
             array_push($lista, $envase);
         }
@@ -88,6 +89,7 @@ class BDEnvase extends Singleton implements IDAO
         $envase->setVolumen($row['volumen']);
         $envase->setFactor($row['factor']);
         $envase->setDescripcion($row['descripcion']);
+        $envase->setImagen($row['imagen']);
 
         return $envase;
     }
@@ -114,10 +116,10 @@ class BDEnvase extends Singleton implements IDAO
 
         return $envase;
     }
-    public function modificar($id, $parametros){
+    public function modificar($id, $parametros, $foto){
         $query = "
             UPDATE envases
-            SET volumen = :volumen, factor = :factor, descripcion = :descripcion
+            SET volumen = :volumen, factor = :factor, descripcion = :descripcion, imagen = :imagen
             WHERE id = :id;";
 
         $connection = new Connection();
@@ -133,7 +135,7 @@ class BDEnvase extends Singleton implements IDAO
         $command->bindParam(':volumen', $volumen);
         $command->bindParam(':factor', $factor);
         $command->bindParam(':descripcion', $descripcion);
-        
+        $command->bindParam(':imagen', $foto);
         
         $command->execute();
     }

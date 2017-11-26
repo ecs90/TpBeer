@@ -6,6 +6,7 @@ use Config\Singleton;
 use Config\Connection;
 
 use Modelos;
+use Controladores;
 
 class BDPedido extends Singleton 
 {
@@ -65,7 +66,42 @@ class BDPedido extends Singleton
         }
     }
 
-    public function getLista()
+    public function listarPedidos($usuario){
+
+        $datosSucursales = new Controladores\SucursalControlador();
+
+        $query = "SELECT * FROM pedidos WHERE id_usuario = :id_usuario;";
+
+        $connection = new Connection();
+        $pdo = $connection->connect();
+        $command = $pdo->prepare($query);
+
+        $id_usuario = $usuario->getId();
+
+        $command->bindParam(':id_usuario', $id_usuario);
+        $command->execute();
+
+        $lista = array();
+        while ($row = $command->fetch()) {
+            $pedido = new Modelos\Pedido();
+
+            $pedido->setId($row['id']);
+            $pedido->setUsuario($usuario);
+            $pedido->setFechaEntrega($row['fecha_entrega']);
+            $pedido->setEstado($row['estado']);
+            $pedido->setHorario($row['horario']);
+            $pedido->setTipoEntrega($row['tipo_entrega']);
+            $pedido->setSucursal($datosSucursales->buscarSucursal($row['id_sucursal']));
+            $pedido->setMontoFinal($row['monto_final']);
+            $pedido->setAllLineaPedido($this->listarLineas($pedido->getId()));
+
+            array_push($lista, $pedido);
+        }
+
+        return $lista;
+    }
+
+    /*public function getLista()
     {
         $query = "SELECT * FROM pedidos;";
 
@@ -132,6 +168,7 @@ class BDPedido extends Singleton
 
         return $pedido;
     }
+    */
 
     //////////////////LINEASPEDIDO////////////////////////
 
@@ -169,5 +206,38 @@ class BDPedido extends Singleton
         $command->bindParam(':precio', $precio);
         $command->bindParam(':id_pedido', $id_pedido);
         $command->execute();
+    }
+
+    public function listarLineas($id_pedido)
+    {
+        $query = "SELECT * FROM linea_pedidos WHERE id_pedido = :id_pedido;";
+
+        $connection = new Connection();
+        $pdo = $connection->connect();
+        $command = $pdo->prepare($query);
+        $command->bindParam(':id_pedido', $id_pedido);
+        $command->execute();
+
+        $lista = array();
+
+        while ($row = $command->fetch()) {
+            
+            $linea_pedido = new Modelos\LineaPedido();
+
+            $linea_pedido->setId($row['id']);
+            $linea_pedido->setIdPedido($row['id_pedido']);
+            $linea_pedido->setCantidad($row['cantidad']);
+            $linea_pedido->setPrecio($row['precio']);
+
+            $cerveza = BDCerveza::getInstance()->buscar($row['id_cerveza']);
+            $linea_pedido->setCerveza($cerveza);
+
+            $envase = BDEnvase::getInstance()->buscar($row['id_envase']);
+            $linea_pedido->setEnvase($envase);
+
+            array_push($lista, $linea_pedido);
+        }
+
+        return $lista;
     }
 }

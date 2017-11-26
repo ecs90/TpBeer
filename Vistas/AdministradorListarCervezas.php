@@ -11,6 +11,7 @@
                 <th scope="col">Descripcion</th>
                 <th scope="col">Precio</th>
                 <th scope="col">Envases</th>
+                <th scope="col">Imagen</th>
                 <th scope="col">
                     <div class="trans text-center">
                         Modificar
@@ -46,6 +47,9 @@
                                 <li><?php echo $envase->getDescripcion() ?></li>
                             <?php endforeach; ?>
                         </ul>
+                    </th>
+                    <th>
+                        <img src="../<?php echo $cerveza->getImagen(); ?>" style="height:40px; width: 40px; ">
                     </th> 
                     <th>
                         <div class="trans text-center">
