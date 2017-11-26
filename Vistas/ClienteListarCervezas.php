@@ -9,7 +9,11 @@
                     <th scope="col">Descripcion</th>
                     <th scope="col">Precio</th>
                     <th scope="col">Envase</th>
-                    <th scope="col">Cantidad</th>
+                    <th scope="col">
+                        <div class="trans text-center">
+                            Cantidad
+                        </div>
+                    </th>
                     <th scope="col">
                         <div class="trans text-center">
                             Encargar

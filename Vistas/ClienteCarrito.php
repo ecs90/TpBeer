@@ -35,7 +35,7 @@
                     </th>
                     <th>
                         <div class="trans text-center">
-                            <a class="btn btn-danger btn-sm" href="#">Eliminar</a>
+                            <a class="btn btn-danger btn-sm" href="/TpBeer/Pedido/eliminarLinea/<?php echo $i; ?>">Eliminar</a>
                         </div>
                     </th>
                 </tr>
@@ -45,7 +45,7 @@
     </table>
     </div>
     
-    <center><h3>Monto Final Parcial: <?php echo $pedido->getMontoFinal(); ?></h3></center><br>
+    <center><h3>Monto total: <?php echo $pedido->getMontoFinal(); ?></h3></center><br>
 
     <div class="container">
         <table class="table table-sm"><tr><th>

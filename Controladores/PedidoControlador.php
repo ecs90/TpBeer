@@ -38,7 +38,25 @@ class PedidoControlador {
             $montoParcial = $montoParcial + $lineaP->getPrecio();
         }
         $pedido->setMontoFinal($montoParcial);
-        header("Location: /TpBeer/cliente/listarCerveza" . $id_pedido);
+        header("Location: /TpBeer/cliente/listarCerveza");
+    }
+
+    public function eliminarLinea($pos = 0){
+        $pedido = $_SESSION['PEDIDO'];
+        $nuevoArray = array();
+        $lineasP = $pedido->getLineaPedido();
+        for ($i=0; $i<count($lineasP); $i++){
+            if($i != $pos){
+                array_push($nuevoArray, $lineasP[$i]);
+            }
+        }
+        $pedido->setAllLineaPedido($nuevoArray);
+        $montoParcial = 0;
+        foreach ($pedido->getLineaPedido() as $lineaP) {
+            $montoParcial = $montoParcial + $lineaP->getPrecio();
+        }
+        $pedido->setMontoFinal($montoParcial);
+        header("Location: /TpBeer/cliente/mostrarCarrito");
     }
 
     public function finalizarPedido($fecha_entrega, $tipo_entrega, $id_sucursal, $horario){
@@ -66,6 +84,38 @@ class PedidoControlador {
         $_SESSION['PEDIDO'] = $pedido;
     }
 
+    function getDistance($addressFrom, $addressTo, $unit){
+        //Change address format
+        $formattedAddrFrom = str_replace(' ','+',$addressFrom);
+        $formattedAddrTo = str_replace(' ','+',$addressTo);
+        
+        //Send request and receive json data
+        $geocodeFrom = file_get_contents('http://maps.google.com/maps/api/geocode/json?address='.$formattedAddrFrom.'&sensor=false');
+        $outputFrom = json_decode($geocodeFrom);
+        $geocodeTo = file_get_contents('http://maps.google.com/maps/api/geocode/json?address='.$formattedAddrTo.'&sensor=false');
+        $outputTo = json_decode($geocodeTo);
+        
+        //Get latitude and longitude from geo data
+        $latitudeFrom = $outputFrom->results[0]->geometry->location->lat;
+        $longitudeFrom = $outputFrom->results[0]->geometry->location->lng;
+        $latitudeTo = $outputTo->results[0]->geometry->location->lat;
+        $longitudeTo = $outputTo->results[0]->geometry->location->lng;
+        
+        //Calculate distance from latitude and longitude
+        $theta = $longitudeFrom - $longitudeTo;
+        $dist = sin(deg2rad($latitudeFrom)) * sin(deg2rad($latitudeTo)) +  cos(deg2rad($latitudeFrom)) * cos(deg2rad($latitudeTo)) * cos(deg2rad($theta));
+        $dist = acos($dist);
+        $dist = rad2deg($dist);
+        $miles = $dist * 60 * 1.1515;
+        $unit = strtoupper($unit);
+        if ($unit == "K") {
+            return ($miles * 1.609344).' km';
+        } else if ($unit == "N") {
+            return ($miles * 0.8684).' nm';
+        } else {
+            return $miles.' mi';
+        }
+    }
     /*
     public function ticket($id_pedido) {
         $GLOBALS['pedido'] = $this->datoPedido->buscar($id_pedido);

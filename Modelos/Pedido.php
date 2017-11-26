@@ -95,6 +95,10 @@ class Pedido{
 		array_push($this->lineasPedido, $linea);
 	}
 
+	public function setAllLineaPedido($lineas){
+		$this->lineasPedido = $lineas;
+	}
+
 	public function getLineaPedido(){
 		return $this->lineasPedido;
 	}
