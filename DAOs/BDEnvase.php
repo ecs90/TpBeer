@@ -97,7 +97,7 @@ class BDEnvase extends Singleton
     public function modificar($id, $parametros, $foto){
         $query = "
             UPDATE envases
-            SET volumen = :volumen, factor = :factor, descripcion = :descripcion, imagen = :imagen
+            SET volumen = :volumen, factor = :factor, descripcion = :descripcion
             WHERE id = :id;";
 
         $connection = new Connection();
@@ -113,8 +113,16 @@ class BDEnvase extends Singleton
         $command->bindParam(':volumen', $volumen);
         $command->bindParam(':factor', $factor);
         $command->bindParam(':descripcion', $descripcion);
-        $command->bindParam(':imagen', $foto);
         
+        // Aca actualizo la imagen nomas
+        if (!is_null($foto)){
+            $query = "UPDATE envases SET imagen = :imagen WHERE id = :id;";
+            $command = $pdo->prepare($query);
+            $command->bindParam(':id', $id);
+            $command->bindParam(':imagen', $foto);
+            $command->execute();
+        }
+
         $command->execute();
     }
 }

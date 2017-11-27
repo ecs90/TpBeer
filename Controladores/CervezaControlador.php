@@ -30,9 +30,10 @@ class CervezaControlador
 
             mkdir($imageDirectory);
         }
-        
+        //print_r($_FILES);
+        //exit;
 
-        if($_FILES){
+        if($_FILES and $_FILES['imagen']['size']>0){
             
             if((isset($_FILES['imagen'])) && ($_FILES['imagen']['name'] != '')){
                 
@@ -45,6 +46,8 @@ class CervezaControlador
 
                 return $file;
             }
+        }else{
+            return null;
         }
     }
 
@@ -54,7 +57,12 @@ class CervezaControlador
         $cerveza->setNombre($nombre);
         $cerveza->setDescripcion($descripcion);
         $cerveza->setPrecio($precio);
-        $cerveza->setImagen($this->MoverImagen());
+
+        $imagen = $this->MoverImagen();
+        if(!is_null($imagen)){
+            $cerveza->setImagen($imagen);
+        }
+
         $envasesC = array();
         foreach ($envases as $envase) {
             $datos = new Controladores\EnvaseControlador();
@@ -87,7 +95,9 @@ class CervezaControlador
         $request = new Request();
         $parametros = $request->getParametros();   
         $idCerveza = $parametros['id'];
+        
         $archi = $this->MoverImagen();
+
         $this->datoCerveza->modificar($idCerveza, $parametros, $archi);    
         header("Location: /TpBeer/administrador/listarCerveza");
     }

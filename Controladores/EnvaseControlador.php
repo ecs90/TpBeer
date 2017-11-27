@@ -25,7 +25,7 @@ class EnvaseControlador {
         }
         
 
-        if($_FILES){
+        if($_FILES and $_FILES['imagen']['size']>0){
             
             if((isset($_FILES['imagen'])) && ($_FILES['imagen']['name'] != '')){
                 
@@ -38,6 +38,8 @@ class EnvaseControlador {
 
                 return $file;
             }
+        }else{
+            return null;
         }
     }
 
@@ -47,7 +49,10 @@ class EnvaseControlador {
         $envase->setVolumen($volumen);
         $envase->setFactor($factor);
         $envase->setDescripcion($descripcion);
-        $envase->setImagen($this->MoverImagen());
+        $imagen = $this->MoverImagen();
+        if(!is_null($imagen)){
+            $envase->setImagen($imagen);
+        }
         $this->datoEnvase->agregar($envase);
         header("Location: /TpBeer/administrador/altaEnvase");
     }

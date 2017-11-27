@@ -104,7 +104,7 @@ class BDCerveza extends Singleton
     public function modificar($id, $parametros, $foto){
         $query = "
             UPDATE cervezas
-            SET nombre = :nombre, descripcion = :descripcion, precio = :precio, imagen = :imagen
+            SET nombre = :nombre, descripcion = :descripcion, precio = :precio
             WHERE id = :id;";
 
         $connection = new Connection();
@@ -119,9 +119,16 @@ class BDCerveza extends Singleton
         $command->bindParam(':nombre', $nombre);
         $command->bindParam(':descripcion', $descripcion);
         $command->bindParam(':precio', $precio);
-        $command->bindParam(':imagen', $foto);
-        
         $command->execute();
+
+        // Aca actualizo la imagen nomas
+        if (!is_null($foto)){
+            $query = "UPDATE cervezas SET imagen = :imagen WHERE id = :id;";
+            $command = $pdo->prepare($query);
+            $command->bindParam(':id', $id);
+            $command->bindParam(':imagen', $foto);
+            $command->execute();
+        }
 
         $envases = $parametros['envases'];
         $envasesC = array();
