@@ -29,7 +29,7 @@ class UsuarioControlador {
             }
             if ($contrasenia1 !== $contrasenia2) {
                 throw new \Exception('Las contrasenas no son iguales');            
-            }        
+            }    
 
             $usuario = new Modelos\Usuario();
 
@@ -39,7 +39,7 @@ class UsuarioControlador {
             $usuario->setTelefono($telefono);
             $usuario->setEmail($email);
             $usuario->setUsername($username);
-            $usuario->setContrasenia($contrasenia);
+            $usuario->setContrasenia($contrasenia1);
 
             $this->datoUsuario->agregar($usuario);
 
@@ -51,7 +51,6 @@ class UsuarioControlador {
 
         } catch (\Exception $exception) {
             echo '<script> alert("'.$exception->getMessage().'"); </script>';
-
             if ($usuarioLogueado != null && $usuarioLogueado->getAdmin() == 1) {
                 require_once 'Vistas/Administrador.php';
                 require_once 'Vistas/AdministradorAltaUsuario.php';
