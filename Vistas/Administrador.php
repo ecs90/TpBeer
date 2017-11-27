@@ -51,6 +51,11 @@
     </ul>
     <ul class="navbar-nav">
       <li class="nav-item  float-right">
+        <a class="nav-link active" href="/TpBeer/administrador/botonLitrosFechas">Litros<span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <ul class="navbar-nav">
+      <li class="nav-item  float-right">
         <a class="nav-link active" href="/TpBeer/Usuario/LogOut">LogOut<span class="sr-only">(current)</span></a>
       </li>
     </ul>

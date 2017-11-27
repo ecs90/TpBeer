@@ -230,4 +230,40 @@ class BDCerveza extends Singleton
         $command->execute();
     }
 
+    public function litrosVendidos($fecha, $fechados){
+        $query = "SELECT nombre, sum(volumen*cantidad) as litros from `tpbeer`.`cervezas` 
+                inner join `tpbeer`.`linea_pedidos` on id_cerveza = cervezas.id
+                inner join `tpbeer`.`envases` on id_envase = envases.id
+                inner join `tpbeer`.`pedidos` on id_pedido = pedidos.id
+                where fecha_entrega between :fecha AND :fechados
+                group by cervezas.nombre ;";
+
+        $connection = new Connection();
+        $pdo = $connection->connect();
+        $command = $pdo->prepare($query);
+
+        $command->bindParam(':fecha', $fecha);
+        $command->bindParam(':fechados', $fechados);
+        $command->execute();
+
+        $lista = array();
+        $litros = array();
+        while ($row = $command->fetch()) {
+            $cerveza = new Modelos\Cerveza();
+
+            $nombre = $row['nombre'];
+            $cerveza = $this->buscarXnombre($nombre);
+
+            $litro = $row['litros'];
+
+            array_push($lista, $cerveza);
+            array_push($litros, $litro);
+
+        }
+        $final = array();
+        array_push($final, $lista);
+        array_push($final, $litros);        
+        return $final;
+    }
+
 }

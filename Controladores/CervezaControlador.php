@@ -105,6 +105,11 @@ class CervezaControlador
         return $this->datoCerveza->buscar($idCerveza);
     }
 
+    public function litros($fecha, $fechados)
+    {
+        return $this->datoCerveza->litrosVendidos($fecha, $fechados);
+    }    
+
     public function guardarCambios($idCerveza, $parametros)
     {
         $request = new Request();
