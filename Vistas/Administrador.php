@@ -20,6 +20,7 @@
         <div class="dropdown-menu" aria-labelledby="dropdown01">
           <a class="dropdown-item" href="/TpBeer/administrador/listarCerveza">Listar</a>
           <a class="dropdown-item" href="/TpBeer/administrador/altaCerveza">Agregar</a>
+          <a class="dropdown-item" href="/TpBeer/administrador/botonLitrosFechas">Litros Vendidos</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -47,11 +48,6 @@
     <ul class="navbar-nav">
       <li class="nav-item  float-right">
         <a class="nav-link active" href="/TpBeer/administrador/listarPedidos">Pedidos<span class="sr-only">(current)</span></a>
-      </li>
-    </ul>
-    <ul class="navbar-nav">
-      <li class="nav-item  float-right">
-        <a class="nav-link active" href="/TpBeer/administrador/botonLitrosFechas">Litros<span class="sr-only">(current)</span></a>
       </li>
     </ul>
     <ul class="navbar-nav">

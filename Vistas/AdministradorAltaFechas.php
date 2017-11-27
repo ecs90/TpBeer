@@ -3,11 +3,11 @@
 		<h5 class="display-6">Buscar litros entre Fechas</h5><br>
 	</div>
 	<form action="/TpBeer/administrador/cervezasXlitro" method="post">
-  		<label for="fecha_entrega"><strong><h5>Fecha inicio: </h5></strong></label>
+  		<label for="fecha_entrega"><strong><h5>Desde:   </h5></strong></label>
         <input type="text" id="datepicker" name="fecha" />
         <br><br>
-        <label for="fecha_entrega"><strong><h5>Fecha fin: </h5></strong></label>
-        <input type="text" id="datepickertwo" name="fechados" /> 
+        <label for="fecha_entrega"><strong><h5>Hasta:   </h5></strong></label>
+        <input type="text" id="datepickertwo" name="fechados" /><br><br>
 		<div class="trans text-center">
   			<button type="submit" class="btn btn-light btn-block">Buscar</button>
   		</div>

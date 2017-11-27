@@ -14,6 +14,7 @@
   <span class="navbar-toggler-icon"></span>
   </button>
   <a class="navbar-brand" href="/TpBeer/cliente/listarCerveza">Cervezas</a>
+  <a class="navbar-brand" href="/TpBeer/cliente/listarSucursales">Sucursales</a>
   <a class="navbar-brand" href="/TpBeer/cliente/listarPedidos">Pedidos</a>
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">

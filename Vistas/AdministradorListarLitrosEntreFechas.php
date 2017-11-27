@@ -1,10 +1,29 @@
 <body class="InitBody"> 
     <br><br>
-    <center><h2>Fecha inicial: <?php echo $fecha; ?></h2></center>
-    <br><br>
-    <center><h2>Fecha final: <?php echo $fechados; ?></h2></center>
-    <?php $i = 0; ?>
-    <?php foreach ($cervezas as $cerveza) { ?>
-    <br><br>
-    <center><label><h2>Cerveza <?php echo $i+1; ?> - Nombre: $<?php echo $cerveza->getNombre() ?> - Litros vendidos: <?php echo $litros[$i] ?></h2></label></center>
-    <?php }; ?>
+    <center><h2>Fecha inicial: <?php echo $fecha; ?> <br>--------------------<br> Fecha final: <?php echo $fechados; ?></h2></center><br>
+    <div class="container">
+    <table class="table table-sm">
+        <thead>
+        <tbody class="bg-dark" style="color: white">
+            <tr>
+                <th scope="col">Cerveza</th>
+                <th scope="col">Litros</th>
+            </tr>
+        </tbody>
+        </thead>
+        <thead>
+        <tbody style="color: black;">
+		    <?php for ($i=0; $i<count($cervezas); $i++) { ?>
+		        <tr class="table-active">
+		            <th>   
+		                <?php echo $cervezas[$i]->getNombre(); ?>
+		            </th> 
+		            <th>   
+		                <?php echo $litros[$i]; ?>
+		            </th>
+		        </tr>
+		    <?php }; ?>
+        </tbody>
+        </thead>
+    </table>
+    </div>

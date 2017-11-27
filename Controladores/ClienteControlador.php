@@ -37,6 +37,13 @@ class ClienteControlador
         require_once('Vistas/Cliente.php');
         require_once('Vistas/ClienteListarPedidos.php');     
     }
+
+    public function listarSucursales()
+    {
+        $datos = new Controladores\SucursalControlador();
+        require_once('Vistas/Cliente.php');
+        require_once('Vistas/ClienteListarSucursales.php');    
+    }
 }
 
 ?>
