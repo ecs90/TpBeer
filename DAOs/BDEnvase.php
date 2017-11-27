@@ -36,11 +36,12 @@ class BDEnvase extends Singleton
 
     public function getLista()
     {
-        $query = " SELECT * FROM envases;";
+        $query = " SELECT * FROM envases WHERE activo = 1;";
 
         $connection = new Connection();
         $pdo = $connection->connect();
         $command = $pdo->prepare($query);
+
         $command->execute();
 
         $lista = array();
@@ -61,7 +62,8 @@ class BDEnvase extends Singleton
 
     public function eliminar($id){
 
-        $query = "DELETE FROM envases WHERE id = :id;";
+        $query = " UPDATE envases SET activo = 0
+            WHERE id = :id;";
 
         $connection = new Connection();
         $pdo = $connection->connect();
@@ -97,7 +99,7 @@ class BDEnvase extends Singleton
 
     public function buscarXdescripcion($descripcion){
 
-        $query = "SELECT * FROM envases WHERE descripcion = :descripcion;";
+        $query = "SELECT * FROM envases WHERE descripcion = :descripcion AND activo = 1;";
 
         $connection = new Connection();
         $pdo = $connection->connect();

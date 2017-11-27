@@ -38,11 +38,12 @@ class BDCerveza extends Singleton
 
     public function getLista()
     {
-        $query = "SELECT * FROM cervezas;";
+        $query = "SELECT * FROM cervezas WHERE activo = 1;";
 
         $connection = new Connection();
         $pdo = $connection->connect();
         $command = $pdo->prepare($query);
+
         $command->execute();
 
         $lista = array();
@@ -65,7 +66,8 @@ class BDCerveza extends Singleton
 
         $this->eliminarEnvases($id);
 
-        $query = "DELETE FROM cervezas WHERE id = :id;";
+        $query = " UPDATE cervezas SET activo = 0
+            WHERE id = :id;";
 
         $connection = new Connection();
         $pdo = $connection->connect();
@@ -103,7 +105,7 @@ class BDCerveza extends Singleton
 
     public function buscarXnombre($nombre){
 
-        $query = "SELECT * FROM cervezas WHERE nombre = :nombre;";
+        $query = "SELECT * FROM cervezas WHERE nombre = :nombre AND activo = 1;";
 
         $connection = new Connection();
         $pdo = $connection->connect();

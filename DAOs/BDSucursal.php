@@ -33,11 +33,12 @@ class BDSucursal extends Singleton
 
     public function getLista()
     {
-        $query = "SELECT * FROM sucursales;";
+        $query = "SELECT * FROM sucursales WHERE activo = 1;";
 
         $connection = new Connection();
         $pdo = $connection->connect();
         $command = $pdo->prepare($query);
+
         $command->execute();
 
         $lista = array();
@@ -56,7 +57,9 @@ class BDSucursal extends Singleton
 
     public function eliminar($id){
 
-        $query = "DELETE FROM sucursales WHERE id = :id;";
+        $query = " UPDATE sucursales SET activo = 0
+            WHERE id = :id;";
+
 
         $connection = new Connection();
         $pdo = $connection->connect();
