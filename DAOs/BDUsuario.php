@@ -46,7 +46,7 @@ class BDUsuario extends Singleton
 
     public function getLista()
     {
-        $query = "SELECT * FROM usuarios WHERE admin = 0";
+        $query = "SELECT * FROM usuarios WHERE admin = 0 AND activo = 1;";
 
         $connection = new Connection();
         $pdo = $connection->connect();
@@ -75,7 +75,8 @@ class BDUsuario extends Singleton
 
     public function eliminar($id){
 
-        $query = "DELETE FROM usuarios WHERE id = :id;";
+        $query = " UPDATE usuarios SET activo = 0
+            WHERE id = :id;";
 
         $connection = new Connection();
         $pdo = $connection->connect();
@@ -146,7 +147,7 @@ class BDUsuario extends Singleton
 
     public function getUsuarioPorUsername($username)
     {
-        $query = "SELECT * FROM usuarios WHERE username=:username;";
+        $query = "SELECT * FROM usuarios WHERE username=:username AND activo = 1;";
 
         $connection = new Connection();
         $pdo = $connection->connect();

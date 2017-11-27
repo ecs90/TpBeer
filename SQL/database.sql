@@ -95,3 +95,6 @@ CREATE TABLE `tpbeer`.`envasesxcervezas` (
     REFERENCES `tpbeer`.`envases` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+
+ALTER TABLE `tpbeer`.`cervezas` 
+ADD COLUMN `activo` INT NOT NULL DEFAULT 1 AFTER `imagen`;
