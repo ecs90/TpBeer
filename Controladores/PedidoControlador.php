@@ -129,6 +129,26 @@ class PedidoControlador {
         require_once('Vistas/AdministradorListarPedidoFecha.php');
     }
 
+    public function modificarEstadoUsuario($id, $usuario, $estado = 0){
+        $this->datoPedido->modificarEstado($estado, $id);
+        header("Location: /TpBeer/pedido/listarPedidosUsuario/" . $usuario); 
+    }
+
+    public function modificarEstadoSucursal($id, $id_sucursal, $estado = 0){
+        $this->datoPedido->modificarEstado($estado, $id);
+        header("Location: /TpBeer/pedido/listarPedidosSucursales/" . $id_sucursal); 
+    }
+
+    public function modificarEstadoFecha($id, $fecha, $estado = 0){
+        $this->datoPedido->modificarEstado($estado, $id);
+        header("Location: /TpBeer/pedido/listarPedidosFechas/" . $fecha); 
+    }
+
+    public function eliminarPedido($id){
+        $this->datoPedido->eliminar($id);
+        header("Location: /TpBeer/administrador/listarPedidos"); 
+    }
+
     protected function vaciarCarrito(){
         $pedido = new Modelos\Pedido();
         $cliente = $_SESSION['USUARIO-LOGUEADO'];

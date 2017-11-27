@@ -70,7 +70,7 @@ class BDPedido extends Singleton
 
         $datosSucursales = new Controladores\SucursalControlador();
 
-        $query = "SELECT * FROM pedidos WHERE id_usuario = :id_usuario;";
+        $query = "SELECT * FROM pedidos WHERE id_usuario = :id_usuario ORDER BY fecha_entrega ASC;";
 
         $connection = new Connection();
         $pdo = $connection->connect();
@@ -106,7 +106,7 @@ class BDPedido extends Singleton
         $datosSucursales = new Controladores\SucursalControlador();
         $datosUsuarios = new Controladores\UsuarioControlador();
 
-        $query = "SELECT * FROM pedidos WHERE id_sucursal = :id_sucursal;";
+        $query = "SELECT * FROM pedidos WHERE id_sucursal = :id_sucursal ORDER BY fecha_entrega ASC;;";
 
         $connection = new Connection();
         $pdo = $connection->connect();
@@ -169,8 +169,24 @@ class BDPedido extends Singleton
         return $lista;
     }
 
-    /*
+    public function modificarEstado($estado, $id){
+        $query = "
+            UPDATE pedidos
+            SET estado = :estado
+            WHERE id = :id;";
+
+        $connection = new Connection();
+        $pdo = $connection->connect();
+        $command = $pdo->prepare($query);
+
+        $command->bindParam(':estado', $estado);
+        $command->bindParam(':id', $id);
+        $command->execute();
+    }
+    
     public function eliminar($id){
+
+        $this->eliminarLineas($id);
 
         $query = "DELETE FROM pedidos WHERE id = :id;";
 
@@ -181,7 +197,6 @@ class BDPedido extends Singleton
         $command->bindParam(':id', $id);
         $command->execute();
     }
-    */
 
     //////////////////LINEASPEDIDO////////////////////////
 
@@ -252,5 +267,17 @@ class BDPedido extends Singleton
         }
 
         return $lista;
+    }
+
+    public function eliminarLineas($id_pedido){
+
+        $query = "DELETE FROM linea_pedidos WHERE id_pedido = :id_pedido;";
+
+        $connection = new Connection();
+        $pdo = $connection->connect();
+        $command = $pdo->prepare($query);
+
+        $command->bindParam(':id_pedido', $id_pedido);
+        $command->execute();
     }
 }

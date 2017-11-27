@@ -37,6 +37,11 @@
 
         <br>
 
+        <label><b>Sucursal:</b> </label>
+        <?php echo $pedido->getSucursal()->getDireccionCompleta(); ?>
+
+        <br>
+
     </center>
     </th></tr></table>
     <div class="container">

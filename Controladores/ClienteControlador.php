@@ -31,6 +31,7 @@ class ClienteControlador
     }
 
     public function listarPedidos(){
+        $datosSucursal = new Controladores\SucursalControlador();
         $datosPedido = new Controladores\PedidoControlador();
         $listaPedidos = $datosPedido->listarPedidos(); 
         require_once('Vistas/Cliente.php');
