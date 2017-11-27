@@ -101,13 +101,18 @@ class BDPedido extends Singleton
         return $lista;
     }
 
-    /*public function getLista()
-    {
-        $query = "SELECT * FROM pedidos;";
+    public function listarPedidoSucursal($id_sucursal){
+
+        $datosSucursales = new Controladores\SucursalControlador();
+        $datosUsuarios = new Controladores\UsuarioControlador();
+
+        $query = "SELECT * FROM pedidos WHERE id_sucursal = :id_sucursal;";
 
         $connection = new Connection();
         $pdo = $connection->connect();
         $command = $pdo->prepare($query);
+
+        $command->bindParam(':id_sucursal', $id_sucursal);
         $command->execute();
 
         $lista = array();
@@ -115,14 +120,14 @@ class BDPedido extends Singleton
             $pedido = new Modelos\Pedido();
 
             $pedido->setId($row['id']);
-            $pedido->setFechaPedido($row['fecha_pedido']);
+            $pedido->setUsuario($datosUsuarios->buscarUsuario($row['id_usuario']));
             $pedido->setFechaEntrega($row['fecha_entrega']);
             $pedido->setEstado($row['estado']);
             $pedido->setHorario($row['horario']);
             $pedido->setTipoEntrega($row['tipo_entrega']);
-            $pedido->setSucursal($row['id_sucursal']);
+            $pedido->setSucursal($datosSucursales->buscarSucursal($row['id_sucursal']));
             $pedido->setMontoFinal($row['monto_final']);
-
+            $pedido->setAllLineaPedido($this->listarLineas($pedido->getId()));
 
             array_push($lista, $pedido);
         }
@@ -130,6 +135,41 @@ class BDPedido extends Singleton
         return $lista;
     }
 
+    public function listarPedidoFecha($fecha_entrega){
+
+        $datosSucursales = new Controladores\SucursalControlador();
+        $datosUsuarios = new Controladores\UsuarioControlador();
+
+        $query = "SELECT * FROM pedidos WHERE fecha_entrega = :fecha_entrega;";
+
+        $connection = new Connection();
+        $pdo = $connection->connect();
+        $command = $pdo->prepare($query);
+
+        $command->bindParam(':fecha_entrega', $fecha_entrega);
+        $command->execute();
+
+        $lista = array();
+        while ($row = $command->fetch()) {
+            $pedido = new Modelos\Pedido();
+
+            $pedido->setId($row['id']);
+            $pedido->setUsuario($datosUsuarios->buscarUsuario($row['id_usuario']));
+            $pedido->setFechaEntrega($row['fecha_entrega']);
+            $pedido->setEstado($row['estado']);
+            $pedido->setHorario($row['horario']);
+            $pedido->setTipoEntrega($row['tipo_entrega']);
+            $pedido->setSucursal($datosSucursales->buscarSucursal($row['id_sucursal']));
+            $pedido->setMontoFinal($row['monto_final']);
+            $pedido->setAllLineaPedido($this->listarLineas($pedido->getId()));
+
+            array_push($lista, $pedido);
+        }
+
+        return $lista;
+    }
+
+    /*
     public function eliminar($id){
 
         $query = "DELETE FROM pedidos WHERE id = :id;";
@@ -140,33 +180,6 @@ class BDPedido extends Singleton
 
         $command->bindParam(':id', $id);
         $command->execute();
-    }
-
-    public function buscar($id){
-
-        $query = "SELECT * FROM pedidos WHERE id = :id;";
-
-        $connection = new Connection();
-        $pdo = $connection->connect();
-        $command = $pdo->prepare($query);
-
-        $command->bindParam(':id', $id);
-        $command->execute();
-
-        $row = $command->fetch();
-
-        $pedido = new Modelos\Pedido();
-
-            $pedido->setId($row['id']);
-            $pedido->setFechaPedido($row['fecha_pedido']);
-            $pedido->setFechaEntrega($row['fecha_entrega']);
-            $pedido->setEstado($row['estado']);
-            $pedido->setHorario($row['horario']);
-            $pedido->setTipoEntrega($row['tipo_entrega']);
-            $pedido->setSucursal($row['id_sucursal']);
-            $pedido->setMontoFinal($row['monto_final']);
-
-        return $pedido;
     }
     */
 

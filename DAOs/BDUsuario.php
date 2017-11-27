@@ -7,7 +7,7 @@ use Config\Connection;
 
 use Modelos;
 
-class BDUsuario extends Singleton implements IDAO 
+class BDUsuario extends Singleton
 {
     public function agregar($usuario)
     {

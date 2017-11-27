@@ -32,7 +32,10 @@
                     <input type="hidden" name="precio" value="<?php echo ($cerveza->getPrecio()*$envase->getFactor()); ?>" >
                     <tr class="table-active">
                         <th>   
-                            <?php echo $cerveza->getNombre(); ?>
+                            <div class="trans text-center">
+                                <?php echo $cerveza->getNombre(); ?><br>
+                                <img src="../<?php echo $cerveza->getImagen(); ?>" style="height:100px; width: 100px; ">
+                            </div>
                         </th> 
                         <th>
                             <?php echo $cerveza->getDescripcion(); ?>
@@ -41,7 +44,10 @@
                             <?php echo ($cerveza->getPrecio()*$envase->getFactor()); ?>
                         </th> 
                         <th>
-                            <?php echo $envase->getDescripcion(); ?>
+                            <div class="trans text-center">
+                                <?php echo $envase->getDescripcion(); ?><br>
+                                <img src="../<?php echo $envase->getImagen(); ?>" style="height:100px; width: 100px; ">
+                            </div>
                         </th>
                         <th>
                             <div class="trans text-center">

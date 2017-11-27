@@ -4,7 +4,7 @@ namespace DAOs;
 
 use Config\Singleton;
 
-class DAOUsuario extends Singleton implements IDAO 
+class DAOUsuario extends Singleton
 {
     public function agregar($usuario){
         session_start();

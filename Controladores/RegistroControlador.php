@@ -4,6 +4,7 @@ use Config\Request;
 use Modelos;
 
 class RegistroControlador{
+    
     public function altaVista(){
         require_once 'Vistas/AltaUsuario.php';
     }

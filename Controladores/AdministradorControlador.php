@@ -107,6 +107,16 @@ class AdministradorControlador
         require_once('Vistas/Administrador.php');
         require_once 'Vistas/AdministradorModificarUsuarios.php';  
     }
+
+    ///////////USUARIOS////////////////
+
+    public function listarPedidos()
+    {
+        $datosSucursal = new Controladores\SucursalControlador();
+        $sucursales = $datosSucursal->getListaSucursales();
+        require_once('Vistas/Administrador.php');
+        require_once 'Vistas/AdministradorPedido.php';
+    }
 }
 
 ?>

@@ -6,6 +6,7 @@ use Config\Request;
 use Modelos;
 use Controladores;
 use DAOs\BDCerveza;
+use DAOs\BDUsuario;
 use DAOs\BDEnvase;
 use DAOs\BDLineaPedido;
 use DAOs\BDPedido;
@@ -97,6 +98,35 @@ class PedidoControlador {
         $cliente = $_SESSION['USUARIO-LOGUEADO'];
         $listaPedidos = $this->datoPedido->listarPedidos($cliente);
         return $listaPedidos;
+    }
+
+    public function listarPedidosUsuario($usuario){
+        $datosUsuarios = BDUsuario::getInstance();
+        $cliente = $datosUsuarios->getUsuarioPorUsername($usuario);
+        if ($cliente != null) {
+            $listaPedidos = $this->datoPedido->listarPedidos($cliente);
+            require_once('Vistas/Administrador.php');
+            require_once('Vistas/AdministradorListarPedidoUsuario.php');
+        }else{
+            $datosSucursal = new Controladores\SucursalControlador();
+            $sucursales = $datosSucursal->getListaSucursales();
+            require_once('Vistas/Administrador.php');
+            require_once 'Vistas/AdministradorPedido.php';
+        }
+    }
+
+    public function listarPedidosSucursales($id_sucursal){
+        $listaPedidos = $this->datoPedido->listarPedidoSucursal($id_sucursal);
+        $datosSucursal = new Controladores\SucursalControlador();
+        $sucursal = $datosSucursal->buscarSucursal($id_sucursal);
+        require_once('Vistas/Administrador.php');
+        require_once('Vistas/AdministradorListarPedidoSucursal.php');
+    }
+
+    public function listarPedidosFechas($fecha){
+        $listaPedidos = $this->datoPedido->listarPedidoFecha($fecha);
+        require_once('Vistas/Administrador.php');
+        require_once('Vistas/AdministradorListarPedidoFecha.php');
     }
 
     protected function vaciarCarrito(){

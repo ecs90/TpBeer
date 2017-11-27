@@ -11,17 +11,6 @@ class Usuario{
 	private $id;
 	private $admin;
 
-
-	/*public function __construct($nombre, $apellido, $domicilio, $telefono, $email, $username, $contrasenia){
-		$this->nombre= $nombre;
-		$this->apellido= $apellido;
-		$this->domicilio= $domicilio;
-		$this->telefono= $telefono;
-		$this->email= $email;
-		$this->username= $username;
-		$this->contrasenia= $contrasenia;
-	}*/
-
 	public function __construct(){}
 
 	public function setNombre($nombre){

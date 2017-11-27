@@ -40,7 +40,9 @@
                             <?php echo $envase->getDescripcion(); ?>
                         </th>
                         <th>
-                            <img src="../<?php echo $envase->getImagen(); ?>" style="height:40px; width: 40px; ">
+                            <div class="trans text-center">
+                                <img src="../<?php echo $envase->getImagen(); ?>" style="height:100px; width: 100px; ">
+                            </div>
                         </th> 
                         <th>
                             <div class="trans text-center">

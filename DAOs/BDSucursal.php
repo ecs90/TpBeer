@@ -7,7 +7,7 @@ use Config\Connection;
 
 use Modelos;
 
-class BDSucursal extends Singleton implements IDAO 
+class BDSucursal extends Singleton 
 {
     public function agregar($sucursal)
     {

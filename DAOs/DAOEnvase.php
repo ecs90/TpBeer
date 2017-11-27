@@ -4,7 +4,7 @@ namespace DAOs;
 
 use Config\Singleton;
 
-class DAOEnvase extends Singleton implements IDAO 
+class DAOEnvase extends Singleton
 {
     public function agregar($envase){
         session_start();

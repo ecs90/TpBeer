@@ -4,7 +4,7 @@ namespace DAOs;
 
 use Config\Singleton;
 
-class DAOCerveza extends Singleton implements IDAO 
+class DAOCerveza extends Singleton
 {
     public function agregar($cerveza){
         //session_start();

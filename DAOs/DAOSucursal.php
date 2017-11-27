@@ -4,7 +4,7 @@ namespace DAOs;
 
 use Config\Singleton;
 
-class DAOSucursal extends Singleton implements IDAO 
+class DAOSucursal extends Singleton
 {
     public function agregar($sucursal){
         session_start();
