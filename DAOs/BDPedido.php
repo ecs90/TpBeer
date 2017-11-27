@@ -39,7 +39,7 @@ class BDPedido extends Singleton
         
         $command = $pdo->prepare($query);
 
-        $id_usuario = ($pedido->getUsuario())->getId();
+        $id_usuario = $pedido->getUsuario()->getId();
         $fecha_entrega = $pedido->getFechaEntrega();
         $estado = $pedido->getEstado();
         $horario = $pedido->getHorario();
