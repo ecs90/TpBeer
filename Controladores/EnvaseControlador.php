@@ -53,7 +53,7 @@ class EnvaseControlador {
 
         try{
                 if ($env->getDescripcion() == $descripcion) {
-                    throw new \Exception('Esa envase ya existe');
+                    throw new \Exception('Ese envase ya existe');
                 }else {
                     $envase = new Modelos\Envase();
                     $envase->setVolumen($volumen);
