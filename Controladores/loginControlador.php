@@ -13,15 +13,38 @@
 			$modelo = BDUsuario::getInstance();
 			$usuario = $modelo->getUsuarioPorUsername($usuario);
 			
-			$this->setUsuarioEnSession($usuario);
-			
-			if (is_null($usuario)) {
-				$this->setUsuarioEnSession("error");
-				header("Location: ../Login/index");
-				return;
-			}
+			try{
+				if (is_null($usuario)) {
+					throw new \Exception('El usuario no existe');
+				}else {
+					$this->setUsuarioEnSession($usuario);
+				}
+			} catch (\Exception $exception) {
+            	echo '<script> alert("'.$exception->getMessage().'"); </script>';
+            	require_once "Vistas/Login.php";
+        	}
 
-			if ($usuario->getContrasenia() !== $contrasenia) {
+        	try{
+				if ($usuario->getContrasenia() !== $contrasenia) {
+					throw new \Exception('Contrasenia incorrecta');
+				}else {
+					if ($usuario->getAdmin() == 1) {
+						header("Location: ../administrador/menu");
+						return;
+					} else {
+						header("Location: ../cliente/menu");
+						return;
+					}
+				}
+			} catch (\Exception $exception) {
+            	echo '<script> alert("'.$exception->getMessage().'"); </script>';
+            	require_once "Vistas/Login.php";
+        	}
+
+
+			////ESTO YA SE PUEDE BORRAR!!!!!!!!!!!!!
+
+			/*if ($usuario->getContrasenia() !== $contrasenia) {
 				$this->setUsuarioEnSession("error");
 				header("Location: ../Login/index");
 				return;
@@ -34,7 +57,7 @@
 			} else {
 				header("Location: ../cliente/menu");
 				return;
-			}						
+			}	*/					
 		}
 
 		protected function setUsuarioEnSession($usuario) {

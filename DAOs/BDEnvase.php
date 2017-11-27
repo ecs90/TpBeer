@@ -94,6 +94,28 @@ class BDEnvase extends Singleton
         return $envase;
     }
 
+
+    public function buscarXdescripcion($descripcion){
+
+        $query = "SELECT * FROM envases WHERE descripcion = :descripcion;";
+
+        $connection = new Connection();
+        $pdo = $connection->connect();
+        $command = $pdo->prepare($query);
+
+        $command->bindParam(':descripcion', $descripcion);
+        $command->execute();
+
+        $row = $command->fetch();
+
+        $envase = new Modelos\Envase();
+        $envase->setId($row['id']);
+        $envase->setVolumen($row['volumen']);
+        $envase->setFactor($row['factor']);
+        $envase->setDescripcion($row['descripcion']);
+
+        return $envase;
+    }
     public function modificar($id, $parametros, $foto){
         $query = "
             UPDATE envases

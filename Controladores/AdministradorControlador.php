@@ -107,7 +107,6 @@ class AdministradorControlador
         require_once('Vistas/Administrador.php');
         require_once 'Vistas/AdministradorModificarUsuarios.php';  
     }
-
 }
 
 ?>
