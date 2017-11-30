@@ -98,3 +98,6 @@ CREATE TABLE `tpbeer`.`envasesxcervezas` (
 
 ALTER TABLE `tpbeer`.`cervezas` 
 ADD COLUMN `activo` INT NOT NULL DEFAULT 1 AFTER `imagen`;
+
+ALTER TABLE `tpbeer`.`usuarios`
+ADD COLUMN `activo` INT NOT NULL DEFAULT 1;
